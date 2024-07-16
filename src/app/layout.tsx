@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { NavSidebar } from "@/components/nav-sidebar";
 
-const inter = Inter({ subsets: ["latin"] });
+const pretendard = localFont({
+  src: "./PretendardVariable.woff2",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   title: "TTING",
@@ -16,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} flex`}>
+    <html lang="en" className={pretendard.className}>
+      <body className={`flex`}>
         <main className="flex min-h-screen w-full flex-col bg-gray-200 w-screen">
           <NavSidebar />
           <div className="px-24">
