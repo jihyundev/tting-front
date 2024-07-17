@@ -52,6 +52,15 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        alert: "#FF4D4D",
+        tagColor1: "#FFD6EA",
+        tagColor2: "#C2DEFF",
+        tagColor3: "#F4D3FF",
+        tagColor4: "#FFCACA",
+        tagColor5: "#FFEBBE",
+        tagColor6: "#FFDAB9",
+        tagColor7: "#B8EDF4",
+        tagColor8: "#CCF4D2"
       },
       borderRadius: {
         lg: "var(--radius)",
