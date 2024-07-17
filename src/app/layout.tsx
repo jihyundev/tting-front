@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { NavSidebar } from "@/components/nav-sidebar";
+import { UserAvatar } from "@/components/user-avatar";
 
 const pretendard = localFont({
   src: "./PretendardVariable.woff2",
@@ -21,9 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={pretendard.className}>
       <body className={`flex`}>
-        <main className="flex min-h-screen w-full flex-col bg-gray-200 w-screen">
+        <main className="flex h-screen w-screen flex-col bg-gray-200">
           <NavSidebar />
-          <div className="px-24">
+          <UserAvatar />
+          <div className="w-screen h-screen flex justify-center items-center">
             {children}
           </div>
         </main>

@@ -15,7 +15,7 @@ export function NavItem({ href, label, children }: {
         <Link
             href={href}
             className={clsx(
-                'flex flex-col gap-1.5 justify-center items-center p-1 h-9 w-9 rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8',
+                'w-full flex flex-col gap-1.5 justify-center items-center p-1 rounded-lg text-muted-foreground transition-colors hover:text-foreground',
                 {
                     'text-black': pathname === href
                 }
@@ -27,7 +27,7 @@ export function NavItem({ href, label, children }: {
                     'bg-accent': pathname === href
                 }
             )}>{children}</div>
-            <div className="text-xs sr-only">{label}</div>
+            <div className="text-xs text-center">{label}</div>
         </Link>
     );
 }
