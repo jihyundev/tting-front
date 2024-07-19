@@ -67,6 +67,18 @@ export function Spinner() {
     );
 }
 
+export function KakaoLogo() {
+    return (
+        <Image
+            src="/brand/kakao-logo.svg"
+            alt="Kakao Logo"
+            width={18}
+            height={18}
+            priority
+        />
+    );
+}
+
 export function Logo(props: React.SVGProps<SVGSVGElement>) {
     return (
         <Image

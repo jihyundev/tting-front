@@ -19,7 +19,7 @@ type TypographyProps = {
     children: React.ReactNode
 }
 
-const Typography = ({ variant, component = "div", children }: TypographyProps) => {
+const Typography = ({ variant, component = "div", children, ...props }: TypographyProps) => {
     const variants = {
         header1: "text-[40px] font-semibold",
         header2: "text-[32px] font-semibold",
@@ -40,7 +40,7 @@ const Typography = ({ variant, component = "div", children }: TypographyProps) =
     }
     const Component = component
     return (
-        <Component className={variants[variant]}>
+        <Component className={variants[variant]} {...props}>
             {children}
         </Component>
     )
