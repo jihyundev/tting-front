@@ -8,8 +8,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     callbacks: {
         async signIn({ user, account }) {
-            const { name, email, image } = user;
-            const { provider, access_token, refresh_token } = account;
+            // const { name, email, image } = user;
+            // const { provider, access_token, refresh_token } = account;
 
             console.log(`signIn called successfully... attempting to login with API server.`)
             return true;

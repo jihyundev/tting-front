@@ -31,8 +31,8 @@ export const UserAvatar = () => {
                         className="fixed top-3.5 sm:top-8 md:right-8 right-5 z-40"
                     >
                         <Avatar className="size-7 sm:size-10">
-                            <AvatarImage src={session.user.image}/>
-                            <AvatarFallback>{session.user.name}</AvatarFallback>
+                            <AvatarImage src={session.user.image || ''}/>
+                            <AvatarFallback>{session.user.name || ''}</AvatarFallback>
                         </Avatar>
                     </div>
                 </DropdownMenuTrigger>
