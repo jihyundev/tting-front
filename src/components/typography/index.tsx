@@ -16,10 +16,11 @@ type TypographyProps = {
         | 'body2'
         | 'body3'
     component?: keyof JSX.IntrinsicElements
+    className?: string
     children: React.ReactNode
 }
 
-const Typography = ({ variant, component = "div", children, ...props }: TypographyProps) => {
+const Typography = ({ variant, component = "div", className, children, ...props }: TypographyProps) => {
     const variants = {
         header1: "text-[40px] font-semibold",
         header2: "text-[32px] font-semibold",
@@ -39,8 +40,9 @@ const Typography = ({ variant, component = "div", children, ...props }: Typograp
         body3: "text-base font-normal text-gray-600",
     }
     const Component = component
+    const classes = `${variants[variant]} ${className}`
     return (
-        <Component className={variants[variant]} {...props}>
+        <Component className={classes} {...props}>
             {children}
         </Component>
     )
