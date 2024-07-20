@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { NavSidebar } from "@/components/nav-sidebar";
 import { UserAvatar } from "@/components/user-avatar";
+import { AuthSession } from "@/components/auth-session";
 
 const pretendard = localFont({
   src: "./PretendardVariable.woff2",
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={pretendard.className}>
       <body className={`flex`}>
+      <AuthSession>
         <main className="flex h-screen w-screen flex-col bg-gray-200">
           <NavSidebar />
           <UserAvatar />
@@ -29,6 +31,7 @@ export default function RootLayout({
             {children}
           </div>
         </main>
+      </AuthSession>
       </body>
     </html>
   );
