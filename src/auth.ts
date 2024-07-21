@@ -10,7 +10,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     callbacks: {
         async signIn({ user, account }) {
             const { name, email, image } = user;
-            if (account) {
+            if (account && account.access_token) {
                 const { provider, access_token, refresh_token } = account;
                 console.log(`provider: ${provider}`)
                 console.log(`access_token: ${access_token}`)
