@@ -25,11 +25,11 @@ export default function RootLayout({
     <html lang="en" className={pretendard.className}>
       <AuthSession>
         <ReactQueryClientProvider>
-          <body className={`flex`}>
-            <main className="flex h-screen w-screen flex-col bg-gray-200">
+          <body className="flex bg-gray-200">
+            <main className="flex h-screen w-screen flex-col overflow-auto">
               <NavSidebar />
               <UserMenu />
-              <div className="">
+              <div className="h-screen w-screen">
                 {children}
               </div>
             </main>
