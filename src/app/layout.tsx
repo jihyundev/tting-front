@@ -29,7 +29,7 @@ export default function RootLayout({
             <main className="flex h-screen w-screen flex-col bg-gray-200">
               <NavSidebar />
               <UserMenu />
-              <div className="w-screen h-screen flex justify-center items-center">
+              <div className="">
                 {children}
               </div>
             </main>
