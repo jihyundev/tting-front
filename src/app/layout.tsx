@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { NavSidebar } from "@/components/nav-sidebar";
-import { UserAvatar } from "@/components/user-avatar";
+import { UserMenu } from "@/components/user-menu";
 import { AuthSession } from "@/components/auth-session";
 import { ReactQueryClientProvider } from "@/components/react-query-client-provider";
 
@@ -28,7 +28,7 @@ export default function RootLayout({
           <body className={`flex`}>
             <main className="flex h-screen w-screen flex-col bg-gray-200">
               <NavSidebar />
-              <UserAvatar />
+              <UserMenu />
               <div className="w-screen h-screen flex justify-center items-center">
                 {children}
               </div>

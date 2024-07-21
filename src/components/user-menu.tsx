@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {useLogout} from "@/hooks/use-logout";
 
-export const UserAvatar = () => {
+export const UserMenu = () => {
     const router = useRouter();
     const {data: session} = useSession();
     const {onSignOut} = useLogout();
