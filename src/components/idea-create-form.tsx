@@ -44,7 +44,7 @@ export const IdeaCreateForm = () => {
     function onSubmit(data: z.infer<typeof FormSchema>) {
         mutate({
             baseInput: data.baseInput,
-            instruction: data.instruction
+            instruction: data.instruction || ''
         })
     }
 
