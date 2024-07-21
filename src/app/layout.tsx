@@ -24,8 +24,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={pretendard.className}>
       <AuthSession>
-        <body className={`flex`}>
-          <ReactQueryClientProvider>
+        <ReactQueryClientProvider>
+          <body className={`flex`}>
             <main className="flex h-screen w-screen flex-col bg-gray-200">
               <NavSidebar />
               <UserAvatar />
@@ -33,8 +33,8 @@ export default function RootLayout({
                 {children}
               </div>
             </main>
-          </ReactQueryClientProvider>
-        </body>
+          </body>
+        </ReactQueryClientProvider>
       </AuthSession>
     </html>
   );
