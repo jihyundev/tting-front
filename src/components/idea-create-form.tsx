@@ -51,8 +51,8 @@ export const IdeaCreateForm = () => {
     return (
         <div className="w-full h-full">
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="h-full flex justify-center mx-24 bg-white gap-6">
-                    <div className="flex-1 bg-grey-300">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="h-full flex justify-center mx-24 gap-6">
+                    <div className="flex-1">
                         <FormField
                             control={form.control}
                             name="baseInput"
