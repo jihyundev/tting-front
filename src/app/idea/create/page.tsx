@@ -1,5 +1,15 @@
+import {Typography} from "@/components/typography";
+import {IdeaCreateForm} from "@/components/idea-create-form";
+
 export default function CreatePage() {
     return (
-        <div>아이디어 생성 페이지</div>
+        <>
+            <header className="w-full min-h-12 sticky top-6 flex justify-center items-center text-center mb-6">
+                <Typography variant="subtitle1">다양한 결과물을 만들어보세요</Typography>
+            </header>
+            <div style={{ height: `calc(100% - 96px)` }}>
+                <IdeaCreateForm />
+            </div>
+        </>
     )
 }

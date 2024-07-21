@@ -1,5 +1,11 @@
 export default function InsightLayout({ children }: {
     children: React.ReactNode
 }) {
-    return <section>{children}</section>
+    return (
+        <section className="w-full h-full flex flex-column justify-center items-center">
+            <div>
+                {children}
+            </div>
+        </section>
+    )
 }
