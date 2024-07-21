@@ -53,7 +53,7 @@ const refreshAccessToken = async () => {
 
 instance.interceptors.request.use(
     async function (config) {
-        const accessToken = getAccessToken();
+        const accessToken = await getAccessToken();
         if (accessToken) {
             config.headers.Authorization = `Bearer ${accessToken}`;
         }
@@ -72,7 +72,8 @@ instance.interceptors.response.use(
         const originalRequest = error.config;
 
         // 토큰이 만료된 경우
-        if (error.response.status === 403) {
+        if (error.response.status === 403 && !originalRequest._retry) {
+            originalRequest._retry = true; // 재요청 방지
             try {
                 const newAccessToken = await refreshAccessToken();
                 originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;

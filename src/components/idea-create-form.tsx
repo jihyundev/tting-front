@@ -16,6 +16,8 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label";
 
+import { useIdeaGenerate } from "@/hooks/use-idea-generate"
+
 const FormSchema = z.object({
     baseInput: z
         .string()
@@ -37,11 +39,13 @@ export const IdeaCreateForm = () => {
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
     })
+    const { mutate, isPending, isError, isSuccess } = useIdeaGenerate()
 
     function onSubmit(data: z.infer<typeof FormSchema>) {
-        console.log(`onSubmit!`)
-        console.log(data)
-        // TODO: 아이디어 생성 로직, 로딩 추가 필요
+        mutate({
+            baseInput: data.baseInput,
+            instruction: data.instruction
+        })
     }
 
     return (
