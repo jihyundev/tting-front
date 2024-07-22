@@ -2,13 +2,20 @@
 
 import {useEffect, useRef, useState} from "react";
 // import lottie from "lottie-web";
-import lottieJson from "/public/lotties/tting-loading.json"
+// import lottieJson from "/lotties/tting-loading.json"
 
-let lottie;
+let lottie: any;
 
 export const LoadingAnimation = () => {
     const container = useRef(null)
     const [isLoaded, setIsLoaded] = useState(false)
+    const [lottieJson, setLottieJson] = useState(null);
+
+    useEffect(() => {
+        fetch('/lotties/tting-loading.json')
+            .then(response => response.json())
+            .then(data => setLottieJson(data));
+    }, []);
 
     useEffect(() => {
         import("lottie-web").then((loadedLottie) => {
@@ -18,7 +25,7 @@ export const LoadingAnimation = () => {
     }, [])
 
     useEffect(() => {
-        if (isLoaded) {
+        if (isLoaded && lottieJson) {
             const anim = lottie.loadAnimation({
                 container: container.current,
                 renderer: 'svg',
@@ -29,7 +36,7 @@ export const LoadingAnimation = () => {
 
             return () => anim.destroy();
         }
-    }, [isLoaded])
+    }, [isLoaded, lottieJson])
 
     return (
         <div ref={container} className="w-full h-full" />
