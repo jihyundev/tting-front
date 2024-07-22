@@ -17,6 +17,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label";
 
 import { useIdeaGenerate } from "@/hooks/use-idea-generate"
+import { Typography } from "@/components/typography";
+import { LoadingIdeaCreate } from "@/components/loading-idea-create";
 
 const FormSchema = z.object({
     baseInput: z
@@ -52,7 +54,7 @@ export const IdeaCreateForm = () => {
         <div className="w-full h-full">
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="h-full flex justify-center mx-24 gap-6">
-                    <div className="flex-1">
+                    <div className="flex-1 flex flex-col gap-16">
                         <FormField
                             control={form.control}
                             name="baseInput"
@@ -92,11 +94,30 @@ export const IdeaCreateForm = () => {
                         <div>
                             <Label>결과</Label>
                         </div>
-                        <div className="flex flex-col justify-center items-center gap-2 h-full">
-                            <Button type="submit">아이디어 만들기</Button>
-                            <Button disabled={true}>카드뉴스 만들기</Button>
-                            <Button disabled={true}>영상대본 만들기</Button>
-                        </div>
+                        {isPending && (
+                            <div className="flex flex-col justify-center items-center gap-2 h-full">
+                                <LoadingIdeaCreate />
+                            </div>
+                        )}
+                        {isError && (
+                            <div className="flex flex-col justify-center items-center gap-2 h-full">
+                                <Typography variant="content">에러가 발생했어요.</Typography>
+                                <Button type="submit">재시도하기</Button>
+                            </div>
+                        )}
+                        {isSuccess && (
+                            <div className="flex flex-col justify-center items-center gap-2 h-full">
+                                <Typography variant="content">아이디어를 만들었어요. 마음에 드는 아이디어를 저장해보세요.</Typography>
+                                <Button>뭔가 뭔가 아이디어 저장</Button>
+                            </div>
+                        )}
+                        {!isPending && !isError && !isSuccess && (
+                            <div className="flex flex-col justify-center items-center gap-2 h-full">
+                                <Button type="submit">아이디어 만들기</Button>
+                                <Button disabled={true}>카드뉴스 만들기</Button>
+                                <Button disabled={true}>영상대본 만들기</Button>
+                            </div>
+                        )}
                     </div>
                 </form>
             </Form>
