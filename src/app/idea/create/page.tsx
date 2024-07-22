@@ -4,7 +4,7 @@ import {IdeaCreateForm} from "@/components/idea-create-form";
 export default function CreatePage() {
     return (
         <>
-            <header className="w-full min-h-12 sticky top-6 flex justify-center items-center text-center mb-6">
+            <header className="w-full min-h-12 sticky top-6 flex justify-center items-center text-center mb-6 bg-gray-200">
                 <Typography variant="subtitle1">다양한 결과물을 만들어보세요</Typography>
             </header>
             <div style={{ height: `calc(100% - 96px)` }}>
