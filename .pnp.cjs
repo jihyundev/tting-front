@@ -46,6 +46,7 @@ const RAW_RUNTIME_STATE =
           ["cookies-next", "npm:4.2.1"],\
           ["eslint", "npm:8.57.0"],\
           ["eslint-config-next", "virtual:09ad915cd43a4083308f9b8e1e1b477b1e67d80e626b626cf87673da53f4d034f463f14908522dda81a9219a6171b844dc5a5d8a453cc3965b264f1a47a583e7#npm:14.2.5"],\
+          ["lottie-web", "npm:5.12.2"],\
           ["lucide-react", "virtual:09ad915cd43a4083308f9b8e1e1b477b1e67d80e626b626cf87673da53f4d034f463f14908522dda81a9219a6171b844dc5a5d8a453cc3965b264f1a47a583e7#npm:0.407.0"],\
           ["next", "virtual:09ad915cd43a4083308f9b8e1e1b477b1e67d80e626b626cf87673da53f4d034f463f14908522dda81a9219a6171b844dc5a5d8a453cc3965b264f1a47a583e7#npm:14.2.5"],\
           ["next-auth", "virtual:09ad915cd43a4083308f9b8e1e1b477b1e67d80e626b626cf87673da53f4d034f463f14908522dda81a9219a6171b844dc5a5d8a453cc3965b264f1a47a583e7#npm:5.0.0-beta.19"],\
@@ -4291,6 +4292,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["lottie-web", [\
+      ["npm:5.12.2", {\
+        "packageLocation": "../../.yarn/berry/cache/lottie-web-npm-5.12.2-942dc9e22a-10c0.zip/node_modules/lottie-web/",\
+        "packageDependencies": [\
+          ["lottie-web", "npm:5.12.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["lru-cache", [\
       ["npm:10.4.3", {\
         "packageLocation": "../../.yarn/berry/cache/lru-cache-npm-10.4.3-30c10b861a-10c0.zip/node_modules/lru-cache/",\
@@ -6155,6 +6165,7 @@ const RAW_RUNTIME_STATE =
           ["cookies-next", "npm:4.2.1"],\
           ["eslint", "npm:8.57.0"],\
           ["eslint-config-next", "virtual:09ad915cd43a4083308f9b8e1e1b477b1e67d80e626b626cf87673da53f4d034f463f14908522dda81a9219a6171b844dc5a5d8a453cc3965b264f1a47a583e7#npm:14.2.5"],\
+          ["lottie-web", "npm:5.12.2"],\
           ["lucide-react", "virtual:09ad915cd43a4083308f9b8e1e1b477b1e67d80e626b626cf87673da53f4d034f463f14908522dda81a9219a6171b844dc5a5d8a453cc3965b264f1a47a583e7#npm:0.407.0"],\
           ["next", "virtual:09ad915cd43a4083308f9b8e1e1b477b1e67d80e626b626cf87673da53f4d034f463f14908522dda81a9219a6171b844dc5a5d8a453cc3965b264f1a47a583e7#npm:14.2.5"],\
           ["next-auth", "virtual:09ad915cd43a4083308f9b8e1e1b477b1e67d80e626b626cf87673da53f4d034f463f14908522dda81a9219a6171b844dc5a5d8a453cc3965b264f1a47a583e7#npm:5.0.0-beta.19"],\
