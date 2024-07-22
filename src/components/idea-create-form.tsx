@@ -17,7 +17,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label";
 
 import { useIdeaGenerate } from "@/hooks/use-idea-generate"
-import {Typography} from "@/components/typography";
+import { Typography } from "@/components/typography";
+import { LoadingIdeaCreate } from "@/components/loading-idea-create";
 
 const FormSchema = z.object({
     baseInput: z
@@ -95,14 +96,12 @@ export const IdeaCreateForm = () => {
                         </div>
                         {isPending && (
                             <div className="flex flex-col justify-center items-center gap-2 h-full">
-                                <Typography variant="subtitle2">잠시만 기다려주세요!<br/>
-                                    지금 다른 페이지로 이동하시면<br/>
-                                    진행 중인 작업이 사라져요 😢</Typography>
+                                <LoadingIdeaCreate />
                             </div>
                         )}
                         {isError && (
                             <div className="flex flex-col justify-center items-center gap-2 h-full">
-                                <Typography variant="content">에러가 발생했어요. 다시 시도해주세요.</Typography>
+                                <Typography variant="content">에러가 발생했어요.</Typography>
                                 <Button type="submit">재시도하기</Button>
                             </div>
                         )}
