@@ -5,6 +5,7 @@ import { NavSidebar } from "@/components/nav-sidebar";
 import { UserMenu } from "@/components/user-menu";
 import { AuthSession } from "@/components/auth-session";
 import { ReactQueryClientProvider } from "@/components/react-query-client-provider";
+import { NavMobile } from "@/components/nav-mobile";
 
 const pretendard = localFont({
   src: "./PretendardVariable.woff2",
@@ -25,12 +26,17 @@ export default function RootLayout({
     <html lang="en" className={pretendard.className}>
       <AuthSession>
         <ReactQueryClientProvider>
-          <body className="flex bg-gray-200">
-            <main className="flex h-screen w-screen flex-col overflow-auto">
+          <body className="flex bg-gray-200 min-h-screen w-full flex-col">
+            <main className="flex min-h-screen flex-col">
               <NavSidebar />
-              <UserMenu />
-              <div className="h-screen w-screen">
-                {children}
+              <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+                <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+                  <NavMobile />
+                </header>
+                <UserMenu />
+                <div className="h-screen">
+                  {children}
+                </div>
               </div>
             </main>
           </body>
