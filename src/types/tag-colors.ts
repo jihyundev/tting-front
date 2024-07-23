@@ -1,1 +1,1 @@
-export type TagColors = 'tagColor1' | 'tagColor2' | 'tagColor3' | 'tagColor4' | 'tagColor5' | 'tagColor6' | 'tagColor7' | 'tagColor8'
+export type TagColors = 'color1' | 'color2' | 'color3' | 'color4' | 'color5' | 'color6' | 'color7' | 'color8'

@@ -15,7 +15,7 @@ export const Tag = ({ label, color, onClick }: {
     }
     return (
         <button
-            className={`p-1.5 h-7 rounded-full bg-${color}`}
+            className={`p-1.5 h-7 text-ellipsis overflow-hidden rounded-full bg-${color}`}
             onClick={onSelectTag}
         >
             <Typography variant="button2">{label}</Typography>
