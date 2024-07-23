@@ -23,7 +23,7 @@ import { IdeaSaveCard } from "@/components/idea-save-card";
 import {useEffect, useState} from "react";
 import {IdeaCreationItem} from "@/types/idea-create";
 import {LogoExclude} from "@/components/icons";
-import {AxiosResponse} from "axios";
+import Link from "next/link";
 
 const FormSchema = z.object({
     baseInput: z
@@ -63,7 +63,6 @@ export const IdeaCreateForm = () => {
     const ideasFiltered = () => ideas.filter(item => !item.isChecked);
 
     function onSubmit(data: z.infer<typeof FormSchema>) {
-        console.log(`'onSubmit() called`)
         mutate({
             baseInput: data.baseInput,
             instruction: data.instruction || ''
@@ -141,7 +140,9 @@ export const IdeaCreateForm = () => {
                             <div className="flex flex-col justify-center items-center gap-5 h-full">
                                 <LogoExclude />
                                 <Typography variant="subtitle3">아이디어를 모두 확인했어요!</Typography>
-                                <Button type="button">돌아가기</Button>
+                                <Link href="/">
+                                    <Button type="button">돌아가기</Button>
+                                </Link>
                             </div>
                         )}
                         {!isPending && !isError && !isSuccess && (
