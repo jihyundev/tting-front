@@ -1,4 +1,6 @@
+import {AxiosResponse} from "axios";
 import { API } from "@/lib/axios";
+import {IdeaCreationItem} from "@/types/idea-create";
 
 /**
  * 아이디어 생성 요청
@@ -6,7 +8,7 @@ import { API } from "@/lib/axios";
  * @param instruction
  */
 export const postGenerateIdea = (baseInput: string, instruction: string) => {
-    return API.post('/v1/ideas/generate-ideas', {
+    return API.post<AxiosResponse<IdeaCreationItem[]>>('/v1/ideas/generate-ideas', {
         text: baseInput,
         instruction,
     });

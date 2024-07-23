@@ -19,6 +19,7 @@ import { Label } from "@/components/ui/label";
 import { useIdeaGenerate } from "@/hooks/use-idea-generate"
 import { Typography } from "@/components/typography";
 import { LoadingIdeaCreate } from "@/components/loading-idea-create";
+import { IdeaSaveCard } from "@/components/idea-save-card";
 
 const FormSchema = z.object({
     baseInput: z
@@ -41,7 +42,7 @@ export const IdeaCreateForm = () => {
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
     })
-    const { mutate, isPending, isError, isSuccess } = useIdeaGenerate()
+    const { mutate, isPending, isError, isSuccess, data } = useIdeaGenerate()
 
     function onSubmit(data: z.infer<typeof FormSchema>) {
         mutate({
@@ -105,10 +106,16 @@ export const IdeaCreateForm = () => {
                                 <Button type="submit">재시도하기</Button>
                             </div>
                         )}
-                        {isSuccess && (
-                            <div className="flex flex-col justify-center items-center gap-2 h-full">
+                        {(isSuccess && Array.isArray(data.data)) && (
+                            <div className="flex flex-col justify-start items-start gap-2 h-full mt-1">
                                 <Typography variant="content">아이디어를 만들었어요. 마음에 드는 아이디어를 저장해보세요.</Typography>
-                                <Button>뭔가 뭔가 아이디어 저장</Button>
+                                {data.data?.map((idea, index) => (
+                                    <IdeaSaveCard
+                                        key={index}
+                                        content={idea.content}
+                                        tags={idea.tags}
+                                    />
+                                ))}
                             </div>
                         )}
                         {!isPending && !isError && !isSuccess && (

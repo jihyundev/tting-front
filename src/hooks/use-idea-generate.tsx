@@ -4,7 +4,8 @@ import {postGenerateIdea} from "@/services/idea";
 export const useIdeaGenerate = () => {
     const queryClient = useQueryClient();
 
-    const { mutate, isPending, isError, isSuccess } = useMutation({
+    const { mutate, isPending, isError, isSuccess, data, error } = useMutation({
+        mutationKey: ['generateIdeas'],
         mutationFn: ({baseInput, instruction}: {
             baseInput: string;
             instruction: string;
@@ -19,6 +20,8 @@ export const useIdeaGenerate = () => {
         mutate,
         isPending,
         isError,
-        isSuccess
+        isSuccess,
+        data,
+        error
     };
 }
