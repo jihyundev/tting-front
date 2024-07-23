@@ -106,7 +106,7 @@ export const IdeaCreateForm = () => {
                                 <Button type="submit">재시도하기</Button>
                             </div>
                         )}
-                        {(isSuccess && Array.isArray(data.data)) && (
+                        {(isSuccess && data && Array.isArray(data.data)) && (
                             <div className="flex flex-col justify-start items-start gap-2 h-full mt-1">
                                 <Typography variant="content">아이디어를 만들었어요. 마음에 드는 아이디어를 저장해보세요.</Typography>
                                 {data.data?.map((idea, index) => (
