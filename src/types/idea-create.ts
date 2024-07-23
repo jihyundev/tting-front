@@ -13,4 +13,4 @@ type IdeaCreationItem = {
     tags: TagItem[];
 }
 
-export {IdeaCreationItem}
+export type {IdeaCreationItem}
