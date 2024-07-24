@@ -23,6 +23,7 @@ import { IdeaSaveCard } from "@/components/idea-save-card";
 import {useEffect, useState} from "react";
 import {IdeaCreationItem} from "@/types/idea-create";
 import {LogoExclude} from "@/components/icons";
+import {AxiosResponse} from "axios";
 
 const FormSchema = z.object({
     baseInput: z
@@ -50,7 +51,8 @@ export const IdeaCreateForm = () => {
 
     useEffect(() => {
         if (isSuccess && data) {
-            setIdeas(data.data)
+            const response: IdeaCreationItem[] = data?.data || []
+            setIdeas(response)
         }
     }, [isSuccess, data]);
 
@@ -108,8 +110,8 @@ export const IdeaCreateForm = () => {
                             )}
                         />
                     </div>
-                    <div className="flex-1">
-                        <div>
+                    <div className="flex-1 ">
+                        <div className="w-full pb-2 border-b border-dotted border-gray-400">
                             <Label>결과</Label>
                         </div>
                         {isPending && (
@@ -147,6 +149,7 @@ export const IdeaCreateForm = () => {
                                 <Button type="submit">아이디어 만들기</Button>
                                 <Button disabled={true}>카드뉴스 만들기</Button>
                                 <Button disabled={true}>영상대본 만들기</Button>
+                                <Typography variant="content">*무료 플랜에서는 ‘아이디어 만들기’만 가능해요.</Typography>
                             </div>
                         )}
                     </div>
