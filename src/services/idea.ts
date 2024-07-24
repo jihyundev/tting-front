@@ -7,8 +7,8 @@ import type {IdeaCreationItem} from "@/types/idea-create";
  * @param baseInput
  * @param instruction
  */
-export const postGenerateIdea = (baseInput: string, instruction: string) => {
-    return API.post<AxiosResponse<IdeaCreationItem[]>>('/v1/ideas/generate-ideas', {
+export const postGenerateIdea = (baseInput: string, instruction: string): Promise<AxiosResponse<IdeaCreationItem[]>> => {
+    return API.post('/v1/ideas/generate-ideas', {
         text: baseInput,
         instruction,
     });
