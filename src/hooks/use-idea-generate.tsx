@@ -3,17 +3,16 @@ import {postGenerateIdea} from "@/services/idea";
 
 export const useIdeaGenerate = () => {
     const queryClient = useQueryClient();
-
     const { mutate, isPending, isError, isSuccess, data, error } = useMutation({
         mutationKey: ['generateIdeas'],
         mutationFn: ({baseInput, instruction}: {
             baseInput: string;
             instruction: string;
         }) => postGenerateIdea(baseInput, instruction),
-        onSuccess: () => queryClient.invalidateQueries({
-            queryKey: ['getIdeas']
-        }),
-        retry: 1
+        onSuccess: (data) => {
+            const updatedData = data.data.map(item => ({ ...item, isChecked: false }));
+            queryClient.setQueryData(['generateIdeas'], { ...data, data: updatedData });
+        }
     });
 
     return {
