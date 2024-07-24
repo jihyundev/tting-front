@@ -1,6 +1,6 @@
 import {AxiosResponse} from "axios";
 import { API } from "@/lib/axios";
-import {IdeaCreationItem} from "@/types/idea-create";
+import type {IdeaCreationItem} from "@/types/idea-create";
 
 /**
  * 아이디어 생성 요청
@@ -12,6 +12,14 @@ export const postGenerateIdea = (baseInput: string, instruction: string) => {
         text: baseInput,
         instruction,
     });
+}
+
+/**
+ * 생성한 아이디어 저장 요청
+ * @param idea
+ */
+export const postGeneratedIdea = (idea: IdeaCreationItem) => {
+    return API.post('/v1/ideas/add-generated-idea', idea)
 }
 
 /**

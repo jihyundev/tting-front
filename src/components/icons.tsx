@@ -91,3 +91,15 @@ export function Logo(props: React.SVGProps<SVGSVGElement>) {
         />
     );
 }
+
+export function LogoExclude() {
+    return (
+        <Image
+            src={"/brand/logo-exclude.svg"}
+            alt={"logo"}
+            width={60}
+            height={60}
+            priority
+        />
+    )
+}
