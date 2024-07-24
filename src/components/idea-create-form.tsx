@@ -20,6 +20,9 @@ import { useIdeaGenerate } from "@/hooks/use-idea-generate"
 import { Typography } from "@/components/typography";
 import { LoadingIdeaCreate } from "@/components/loading-idea-create";
 import { IdeaSaveCard } from "@/components/idea-save-card";
+import {useEffect, useState} from "react";
+import {IdeaCreationItem} from "@/types/idea-create";
+import {LogoExclude} from "@/components/icons";
 
 const FormSchema = z.object({
     baseInput: z
@@ -43,8 +46,22 @@ export const IdeaCreateForm = () => {
         resolver: zodResolver(FormSchema),
     })
     const { mutate, isPending, isError, isSuccess, data } = useIdeaGenerate()
+    const [ideas, setIdeas] = useState<Array<IdeaCreationItem>>([]);
+
+    useEffect(() => {
+        if (isSuccess && data) {
+            setIdeas(data.data)
+        }
+    }, [isSuccess, data]);
+
+    const onCheckIdea = (checkedIdea: IdeaCreationItem) => {
+        setIdeas(ideas.map(idea => idea.id === checkedIdea.id ? { ...idea, isChecked: true } : idea));
+    }
+
+    const ideasFiltered = () => ideas.filter(item => !item.isChecked);
 
     function onSubmit(data: z.infer<typeof FormSchema>) {
+        console.log(`'onSubmit() called`)
         mutate({
             baseInput: data.baseInput,
             instruction: data.instruction || ''
@@ -106,16 +123,23 @@ export const IdeaCreateForm = () => {
                                 <Button type="submit">재시도하기</Button>
                             </div>
                         )}
-                        {(isSuccess && data && Array.isArray(data.data)) && (
+                        {(isSuccess && data && ideasFiltered().length > 0) && (
                             <div className="flex flex-col justify-start items-start gap-2 h-full mt-1">
                                 <Typography variant="content">아이디어를 만들었어요. 마음에 드는 아이디어를 저장해보세요.</Typography>
-                                {data.data?.map((idea, index) => (
+                                {ideasFiltered().map((idea, index) => (
                                     <IdeaSaveCard
                                         key={index}
-                                        content={idea.content}
-                                        tags={idea.tags}
+                                        idea={idea}
+                                        onCheck={onCheckIdea}
                                     />
                                 ))}
+                            </div>
+                        )}
+                        {(isSuccess && data && ideasFiltered().length === 0) && (
+                            <div className="flex flex-col justify-center items-center gap-5 h-full">
+                                <LogoExclude />
+                                <Typography variant="subtitle3">아이디어를 모두 확인했어요!</Typography>
+                                <Button type="button">돌아가기</Button>
                             </div>
                         )}
                         {!isPending && !isError && !isSuccess && (
