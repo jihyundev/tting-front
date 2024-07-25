@@ -24,12 +24,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={pretendard.className}>
-      <body className="flex bg-gray-200 min-h-screen w-full flex-col">
+      <body className="flex bg-gray-200 min-h-screen flex-col">
         <AuthSession>
           <ReactQueryClientProvider>
             <main className="flex min-h-screen flex-col">
               <NavSidebar />
-              <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+              <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-20">
                 <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
                   <NavMobile />
                 </header>

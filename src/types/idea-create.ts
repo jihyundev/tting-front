@@ -18,4 +18,4 @@ type IdeaCreationItem = {
     isChecked?: boolean;
 }
 
-export type {IdeaCreationItem}
+export type {IdeaCreationItem, TagItem}
