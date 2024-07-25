@@ -27,5 +27,7 @@ export const postGeneratedIdea = (idea: IdeaCreationItem) => {
  * 아이디어 목록 조회 요청
  */
 export const getIdeas = (searchQuery: IdeaSearchQuery): Promise<AxiosResponse<IdeaFetchResponse>> => {
-    return API.get('/v1/ideas');
+    return API.get('/v1/ideas', {
+        params: searchQuery
+    });
 }
