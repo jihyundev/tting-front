@@ -1,6 +1,7 @@
 import {AxiosResponse} from "axios";
 import { API } from "@/lib/axios";
 import type {IdeaCreationItem} from "@/types/idea-create";
+import type {IdeaFetchResponse, IdeaSearchQuery} from "@/types/idea-fetch";
 
 /**
  * 아이디어 생성 요청
@@ -25,6 +26,6 @@ export const postGeneratedIdea = (idea: IdeaCreationItem) => {
 /**
  * 아이디어 목록 조회 요청
  */
-export const getIdeas = () => {
+export const getIdeas = (searchQuery: IdeaSearchQuery): Promise<AxiosResponse<IdeaFetchResponse>> => {
     return API.get('/v1/ideas');
 }
