@@ -1,12 +1,13 @@
 'use client'
 import Image from "next/image";
-import {useIdeas} from "@/hooks/use-ideas";
+import {useSearchIdeas} from "@/hooks/use-search-ideas";
 import {IdeaItemCard} from "@/components/idea-item-card";
 import {IntroCard} from "@/components/intro-card";
 import {LoadingAnimation} from "@/components/loading-animation";
+import {SearchBar} from "@/components/search-bar";
 
 export const IdeaList = () => {
-    const {data, isLoading, isError, error} = useIdeas({});
+    const {data, isLoading, isError, error, setSearchText} = useSearchIdeas({});
 
     if (isLoading) {
         return (
@@ -26,17 +27,26 @@ export const IdeaList = () => {
                 width={280}
                 height={200}
             />
-            에러가 발생했어요. 에러: {error.message}
+            에러가 발생했어요. 에러: {error ? error.message : '알 수 없음'}
         </div>
     }
+
+    if (!data?.data?.data?.length && !isLoading && !isError) {
+        return <IntroCard />
+    }
+
     return (
         <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-                {data?.data?.data?.length && data.data.data.map(idea => (
-                    <IdeaItemCard key={idea.id} idea={idea} />
-                ))}
+            <div>
+                <div className="sticky my-5 flex justify-center">
+                    <SearchBar onSearch={setSearchText} />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                    {data?.data?.data?.length && data.data.data.map(idea => (
+                        <IdeaItemCard key={idea.id} idea={idea} />
+                    ))}
+                </div>
             </div>
-            {!data?.data?.data?.length && !isLoading && !isError && <IntroCard />}
         </>
     );
 }
