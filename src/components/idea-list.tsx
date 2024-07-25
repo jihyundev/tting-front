@@ -27,7 +27,7 @@ export const IdeaList = () => {
                 width={280}
                 height={200}
             />
-            에러가 발생했어요. 에러: {error.message}
+            에러가 발생했어요. 에러: {error ? error.message : '알 수 없음'}
         </div>
     }
 
