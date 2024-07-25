@@ -7,7 +7,7 @@ export default async function Page() {
 
     if (session?.user) {
         return (
-            <div className="flex justify-center items-center mx-4 sm:mx-6 md:mx-8 lg:mx-12 my-12">
+            <div className="flex justify-center items-center mx-4 sm:mx-6 md:mx-8 lg:mx-12 py-12">
                 <IdeaList />
             </div>
         )
