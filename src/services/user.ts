@@ -1,4 +1,6 @@
 import { API } from "@/lib/axios";
+import type { UserProfile } from "@/types/user";
+import {AxiosResponse} from "axios";
 
 /**
  * 소셜 로그인 요청
@@ -15,7 +17,7 @@ export const postSocialLogin = async (provider: string, token: string) => {
 /**
  * 유저 본인 조회 요청
  */
-export const getMe = async () => {
+export const getMe = async (): Promise<AxiosResponse<UserProfile>> => {
     return await API.get('/v1/users/me');
 }
 
