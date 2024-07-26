@@ -45,7 +45,7 @@ export const IdeaList = () => {
 
     return (
         <>
-            <div className="w-full">
+            <div>
                 <div className="sticky w-full my-5 flex justify-center">
                     <SearchBar
                         value={searchText}
