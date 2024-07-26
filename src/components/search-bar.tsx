@@ -21,7 +21,7 @@ export const SearchBar = ({
             onSearch(value);
         }
     };
-
+  
     return (
         <div className="flex items-center justify-center py-3 px-3.5 bg-white border border-gray-200 rounded-full shadow-sm h-14 w-full max-w-3xl">
             <SearchIcon className="h-9 w-9" />
