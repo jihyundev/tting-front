@@ -7,6 +7,7 @@ import {IdeaItemCard} from "@/components/idea-item-card";
 import {IntroCard} from "@/components/intro-card";
 import {LoadingAnimation} from "@/components/loading-animation";
 import {SearchBar} from "@/components/search-bar";
+import {IdeaFilter} from "@/components/idea-filter";
 
 export const IdeaList = () => {
     const [searchText, setSearchText] = useState("");
@@ -19,6 +20,7 @@ export const IdeaList = () => {
         fetchNextPage,
         hasNextPage,
         setSearchText: setSearchQueryText,
+        setIsDescending: setQueryIsDescending
     } = useSearchIdeas({});
 
     const { ref, inView } = useInView({
@@ -45,12 +47,17 @@ export const IdeaList = () => {
     return (
         <>
             <div className="w-full">
-                <div className="sticky top-0 right-0 w-full py-5 flex justify-center bg-gray-200">
-                    <SearchBar
-                        value={searchText}
-                        onSearch={handleSearch}
-                        onChange={setSearchText}
-                    />
+                <div className="sticky top-0 right-0 w-full bg-gray-200">
+                    <div className="py-5 flex justify-center">
+                        <SearchBar
+                            value={searchText}
+                            onSearch={handleSearch}
+                            onChange={setSearchText}
+                        />
+                    </div>
+                    <div className="pb-5">
+                        <IdeaFilter setIsDescending={setQueryIsDescending} />
+                    </div>
                 </div>
                 {data?.pages?.map((page, pageIndex) => (
                     <div key={pageIndex} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
