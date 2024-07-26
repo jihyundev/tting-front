@@ -31,7 +31,7 @@ const Typography = ({ variant, component = "div", className, children, ...props 
         subtitle2: "text-2xl font-normal text-gray-400",
         subtitle3: "text-lg font-normal text-gray-400",
         content: "text-sm font-medium text-gray-600",
-        description: "text-xs font-normal text-gray-400",
+        caption: "text-xs font-normal text-gray-400",
         alert: "text-sm font-normal text-[#FF4D4D]",
         button1: "text-base font-medium text-gray-600",
         button2: "text-xs font-medium text-gray-600",
