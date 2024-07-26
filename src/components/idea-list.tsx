@@ -30,7 +30,7 @@ export const IdeaList = () => {
                         onChange={setSearchText}
                     />
                 </div>
-                {data?.data?.data?.length > 0 && (
+                {data?.data?.data?.length && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                         {data.data.data.map(idea => (
                             <IdeaItemCard key={idea.id} idea={idea} />
