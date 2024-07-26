@@ -1,24 +1,38 @@
 import {useState} from "react";
-import {useQuery} from "@tanstack/react-query";
+import {useQuery, useInfiniteQuery} from "@tanstack/react-query";
 import {getIdeas} from "@/services/idea";
 
 export const useSearchIdeas = ({
     tagId = ''
 }) => {
     const [searchText, setSearchText] = useState("");
-    const [offset, setOffset] = useState(0);
-    const [limit, setLimit] = useState(30);
     const [isDescending, setIsDescending] = useState(true);
+    const [pageSize, setPageSize] = useState(12);
 
-    const {data, isLoading, isError, error} = useQuery({
-        queryKey: ['getIdeas', searchText, offset, limit, isDescending],
-        queryFn: () => getIdeas({
+    const {
+        data,
+        isLoading,
+        isError,
+        error,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage
+    } = useInfiniteQuery({
+        queryKey: ['getIdeas', searchText, pageSize, isDescending],
+        queryFn: ({ pageParam = 0 }) => getIdeas({
             searchText,
-            offset,
-            limit,
+            offset: pageParam * pageSize,
+            limit: pageSize,
             descending: isDescending,
             tagId
         }),
+        getNextPageParam: (lastPage, allPages, lastPageParam) => {
+            if (lastPage.data.data.length === 0) {
+                return undefined;
+            }
+            return lastPageParam + 1
+        },
+        initialPageParam: 0
     });
 
     return {
@@ -26,9 +40,11 @@ export const useSearchIdeas = ({
         isLoading,
         isError,
         error,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage,
         setSearchText,
-        setOffset,
-        setLimit,
+        setPageSize,
         setIsDescending
     }
 }

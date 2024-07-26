@@ -1,6 +1,7 @@
 'use client'
 import Image from "next/image";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import { useInView } from "react-intersection-observer";
 import {useSearchIdeas} from "@/hooks/use-search-ideas";
 import {IdeaItemCard} from "@/components/idea-item-card";
 import {IntroCard} from "@/components/intro-card";
@@ -9,34 +10,56 @@ import {SearchBar} from "@/components/search-bar";
 
 export const IdeaList = () => {
     const [searchText, setSearchText] = useState("");
-    const {data, isLoading, isError, error, setSearchText: setSearchQueryText} = useSearchIdeas({});
+
+    const {
+        data,
+        isLoading,
+        isError,
+        error,
+        fetchNextPage,
+        hasNextPage,
+        setSearchText: setSearchQueryText,
+    } = useSearchIdeas({});
+
+    const { ref, inView } = useInView({
+        rootMargin: '200px 0px',
+        threshold: 0.3
+    })
+
+    useEffect(() => {
+        if (inView && hasNextPage) {
+            fetchNextPage();
+        }
+    }, [inView, hasNextPage, fetchNextPage]);
+
 
     const handleSearch = (searchText: string) => {
         setSearchText(searchText);
         setSearchQueryText(searchText);
     };
 
-    if (!data?.data?.data?.length && !isLoading && !isError) {
+    if (!data?.pages?.[0]?.data.count && !isLoading && !isError) {
         return <IntroCard />
     }
 
     return (
         <>
             <div className="w-full">
-                <div className="sticky w-full my-5 flex justify-center">
+                <div className="sticky top-0 right-0 w-full py-5 flex justify-center bg-gray-200">
                     <SearchBar
                         value={searchText}
                         onSearch={handleSearch}
                         onChange={setSearchText}
                     />
                 </div>
-                {data?.data?.data?.length && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-                        {data.data.data.map(idea => (
+                {data?.pages?.map((page, pageIndex) => (
+                    <div key={pageIndex} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                        {page.data.data.map(idea => (
                             <IdeaItemCard key={idea.id} idea={idea} />
                         ))}
+                        <div ref={ref} />
                     </div>
-                )}
+            ))}
                 {isLoading && (
                     <div className="w-full h-full flex justify-center align-center">
                         <div className="w-48 h-36">
