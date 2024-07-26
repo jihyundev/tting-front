@@ -1,19 +1,23 @@
 'use client'
 
-import {useState} from "react";
 import {SearchIcon} from "@/components/icons";
 
-export const SearchBar = ({ onSearch = () => {} }: {
+export const SearchBar = ({
+    value = "",
+    onSearch = () => {},
+    onChange = () => {},
+}: {
+    value?: string,
     onSearch?: (searchText: string) => void
+    onChange?: (searchText: string) => void
 }) => {
-    const [searchText, setSearchText] = useState("");
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchText(e.target.value);
+        onChange(e.target.value);
     };
 
     const onInputKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
-            onSearch(searchText);
+            onSearch(value);
         }
     };
     return (
@@ -24,7 +28,7 @@ export const SearchBar = ({ onSearch = () => {} }: {
                 maxLength={50}
                 placeholder="아이디어 검색하기"
                 className="flex-1 ml-3 border-none outline-none text-2xl text-gray-600 placeholder-gray-400"
-                value={searchText}
+                value={value}
                 onChange={onInputChange}
                 onKeyDown={onInputKeydown}
             />
