@@ -18,7 +18,6 @@ export const IdeaList = () => {
         error,
         fetchNextPage,
         hasNextPage,
-        isFetchingNextPage,
         setSearchText: setSearchQueryText,
     } = useSearchIdeas({});
 
@@ -45,8 +44,8 @@ export const IdeaList = () => {
 
     return (
         <>
-            <div>
-                <div className="sticky w-full my-5 flex justify-center">
+            <div className="w-full">
+                <div className="sticky top-0 right-0 w-full py-5 flex justify-center bg-gray-200">
                     <SearchBar
                         value={searchText}
                         onSearch={handleSearch}
