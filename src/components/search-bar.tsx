@@ -1,14 +1,15 @@
 'use client'
 
 import {SearchIcon} from "@/components/icons";
+import {CircleX} from "lucide-react";
 
 export const SearchBar = ({
     value = "",
     onSearch = () => {},
-    onChange = () => {},
+    onChange = () => {}
 }: {
     value?: string,
-    onSearch?: (searchText: string) => void
+    onSearch?: (searchText: string) => void,
     onChange?: (searchText: string) => void
 }) => {
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,6 +21,7 @@ export const SearchBar = ({
             onSearch(value);
         }
     };
+
     return (
         <div className="flex items-center justify-center py-3 px-3.5 bg-white border border-gray-200 rounded-full shadow-sm h-14 w-full max-w-3xl">
             <SearchIcon className="h-9 w-9" />
@@ -32,6 +34,12 @@ export const SearchBar = ({
                 onChange={onInputChange}
                 onKeyDown={onInputKeydown}
             />
+            {value && (
+                <CircleX
+                    className="h-7 w-7 text-gray-500 cursor-pointer"
+                    onClick={() => onChange("")}
+                />
+            )}
         </div>
     )
 }
