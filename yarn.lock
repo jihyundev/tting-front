@@ -1770,6 +1770,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dayjs@npm:^1.11.12":
+  version: 1.11.12
+  resolution: "dayjs@npm:1.11.12"
+  checksum: 10c0/9673d37f3f9ad8a91caaeae9b3fea9a0010c81c7f58599fb9d860bc3359b86632fbff8eb7dddc86c2acaab01c5e6860bc672952f17b58c9286140c52b077c8e4
+  languageName: node
+  linkType: hard
+
 "debug@npm:4, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.4":
   version: 4.3.5
   resolution: "debug@npm:4.3.5"
@@ -4968,6 +4975,7 @@ __metadata:
     class-variance-authority: "npm:^0.7.0"
     clsx: "npm:^2.1.1"
     cookies-next: "npm:^4.2.1"
+    dayjs: "npm:^1.11.12"
     eslint: "npm:^8"
     eslint-config-next: "npm:14.2.5"
     lottie-web: "npm:^5.12.2"

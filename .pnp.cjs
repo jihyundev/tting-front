@@ -45,6 +45,7 @@ const RAW_RUNTIME_STATE =
           ["class-variance-authority", "npm:0.7.0"],\
           ["clsx", "npm:2.1.1"],\
           ["cookies-next", "npm:4.2.1"],\
+          ["dayjs", "npm:1.11.12"],\
           ["eslint", "npm:8.57.0"],\
           ["eslint-config-next", "virtual:09ad915cd43a4083308f9b8e1e1b477b1e67d80e626b626cf87673da53f4d034f463f14908522dda81a9219a6171b844dc5a5d8a453cc3965b264f1a47a583e7#npm:14.2.5"],\
           ["lottie-web", "npm:5.12.2"],\
@@ -2373,6 +2374,15 @@ const RAW_RUNTIME_STATE =
           ["call-bind", "npm:1.0.7"],\
           ["es-errors", "npm:1.3.0"],\
           ["is-data-view", "npm:1.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["dayjs", [\
+      ["npm:1.11.12", {\
+        "packageLocation": "../../.yarn/berry/cache/dayjs-npm-1.11.12-ce23245b6e-10c0.zip/node_modules/dayjs/",\
+        "packageDependencies": [\
+          ["dayjs", "npm:1.11.12"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -6228,6 +6238,7 @@ const RAW_RUNTIME_STATE =
           ["class-variance-authority", "npm:0.7.0"],\
           ["clsx", "npm:2.1.1"],\
           ["cookies-next", "npm:4.2.1"],\
+          ["dayjs", "npm:1.11.12"],\
           ["eslint", "npm:8.57.0"],\
           ["eslint-config-next", "virtual:09ad915cd43a4083308f9b8e1e1b477b1e67d80e626b626cf87673da53f4d034f463f14908522dda81a9219a6171b844dc5a5d8a453cc3965b264f1a47a583e7#npm:14.2.5"],\
           ["lottie-web", "npm:5.12.2"],\

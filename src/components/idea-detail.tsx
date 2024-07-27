@@ -18,6 +18,8 @@ import {Tag} from "@/components/tag";
 import {Button} from "@/components/ui/button";
 import type {IdeaItem} from "@/types/idea-fetch";
 import {useIdeaEdit} from "@/hooks/use-idea-edit";
+import {Typography} from "@/components/typography";
+import {formatLastEdited} from "@/utils/date-util";
 
 const FormSchema = z.object({
     ideaDetail: z
@@ -79,17 +81,20 @@ export const IdeaDetail = ({ idea }: {
                                 <Tag key={tag.id} label={tag.name} color={tag.color} />
                             ))}
                         </div>
-                        <Button
-                            type="submit"
-                            disabled={isPending}
-                        >
-                            {isPending ? (
-                                <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    저장중
-                                </>
-                            ) : "저장하기"}
-                        </Button>
+                        <div className="flex gap-2.5">
+                            <Typography variant="caption" className="pt-4">{formatLastEdited(idea.createdAt)}</Typography>
+                            <Button
+                                type="submit"
+                                disabled={isPending}
+                            >
+                                {isPending ? (
+                                    <>
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        저장중
+                                    </>
+                                ) : "저장하기"}
+                            </Button>
+                        </div>
                     </div>
                 </form>
             </Form>
