@@ -14,6 +14,7 @@ type Tag = {
     createdAt: string;
     updatedAt: string;
     latestIdeaContent: string;
+    ideaCount: number;
 }
 
 type TagFetchResponse = {

@@ -28,7 +28,8 @@ export const TagItemCard = ({ tag }: {
                             </Typography>
                             <div className={`w-3.5 h-3.5 rounded-full ${TAG_COLOR_MAPPER[tag.color]}`}></div>
                         </div>
-                        <Typography variant="caption" className="pt-2.5">{formatLastEdited(tag.updatedAt)}</Typography>
+                        <Typography variant="content" className="pt-2.5">아이디어 {tag.ideaCount}개</Typography>
+                        <Typography variant="caption">{formatLastEdited(tag.updatedAt)}</Typography>
                     </div>
                 </CardFooter>
             </Card>
