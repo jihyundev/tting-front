@@ -87,7 +87,7 @@ export const IdeaList = () => {
                             </Button>
                         )}
                         {mode === "select" && (
-                            <>
+                            <div className="flex gap-3">
                                 <Button
                                     onClick={navigateToIdeaCreate}
                                     disabled={selectedIdeas.length === 0}
@@ -95,7 +95,7 @@ export const IdeaList = () => {
                                     조합하기
                                 </Button>
                                 <IdeasDeleteButton selectedIdeas={selectedIdeas} />
-                            </>
+                            </div>
                         )}
                     </div>
                 </div>
