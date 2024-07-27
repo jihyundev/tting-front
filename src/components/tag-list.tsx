@@ -1,10 +1,12 @@
 'use client'
 
 import {useEffect} from "react";
+import Image from "next/image";
 import {useInView} from "react-intersection-observer";
 import {TagItemCard} from "@/components/tag-item-card";
 import {useTagList} from "@/hooks/use-tag-list";
 import {ListFilter} from "@/components/list-filter";
+import {LoadingAnimation} from "@/components/loading-animation";
 
 export const TagList = () => {
     const {
@@ -28,6 +30,23 @@ export const TagList = () => {
         }
     }, [inView, hasNextPage, fetchNextPage]);
 
+    if (isError) {
+        return (
+            <div className="w-full h-full flex justify-center align-center">
+                <Image
+                    src="/brand/error-logo.svg"
+                    alt="error-logo"
+                    width={280}
+                    height={200}
+                />
+                <div>
+                    <div>에러가 발생했어요.</div>
+                    <div>에러: {error ? error.message : '알 수 없음'}</div>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="w-full">
             <div className="sticky top-0 right-0 w-full bg-gray-200">
@@ -40,8 +59,16 @@ export const TagList = () => {
                     {page.data.data.map((tag, j) => (
                         <TagItemCard key={j} tag={tag}/>
                     ))}
+                    <div ref={ref} />
                 </div>
             ))}
+            {isLoading && (
+                <div className="w-full h-full flex justify-center align-center">
+                    <div className="w-48 h-36">
+                        <LoadingAnimation />
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
