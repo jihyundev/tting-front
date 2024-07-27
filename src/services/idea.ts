@@ -45,3 +45,11 @@ export const postIdea = ({ id, content }: {
         content
     });
 }
+
+/**
+ * 아이디어 삭제 요청
+ * @param id
+ */
+export const deleteIdea = (id: string) => {
+    return API.delete(`/v1/ideas/${id}`);
+}

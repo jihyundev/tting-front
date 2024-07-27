@@ -12,6 +12,7 @@ import {ListFilter} from "@/components/list-filter";
 import {Button} from "@/components/ui/button";
 import {IdeaItemSelectCard} from "@/components/idea-item-select-card";
 import {IdeaItem} from "@/types/idea-fetch";
+import {IdeasDeleteButton} from "@/components/ideas-delete-button";
 
 export const IdeaList = () => {
     const [searchText, setSearchText] = useState("");
@@ -86,12 +87,15 @@ export const IdeaList = () => {
                             </Button>
                         )}
                         {mode === "select" && (
-                            <Button
-                                onClick={navigateToIdeaCreate}
-                                disabled={selectedIdeas.length === 0}
-                            >
-                                조합하기
-                            </Button>
+                            <>
+                                <Button
+                                    onClick={navigateToIdeaCreate}
+                                    disabled={selectedIdeas.length === 0}
+                                >
+                                    조합하기
+                                </Button>
+                                <IdeasDeleteButton selectedIdeas={selectedIdeas} />
+                            </>
                         )}
                     </div>
                 </div>
