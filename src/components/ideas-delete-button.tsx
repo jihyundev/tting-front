@@ -12,8 +12,11 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import {IdeaItem} from "@/types/idea-fetch";
 
-export const IdeasDeleteButton = ({ selectedIdeas }) => {
+export const IdeasDeleteButton = ({ selectedIdeas }: {
+    selectedIdeas: IdeaItem[]
+}) => {
     const { mutate, isPending, isError, isSuccess } = useIdeasDelete();
 
     const deleteSelectedIdeas = () => {
