@@ -1,16 +1,23 @@
 'use client'
 import Image from "next/image";
 import {useEffect, useState} from "react";
-import { useInView } from "react-intersection-observer";
+import {useInView} from "react-intersection-observer";
 import {useSearchIdeas} from "@/hooks/use-search-ideas";
+import {useTagDetail} from "@/hooks/use-tag-detail";
 import {IdeaItemCard} from "@/components/idea-item-card";
-import {IntroCard} from "@/components/intro-card";
 import {LoadingAnimation} from "@/components/loading-animation";
-import {SearchBar} from "@/components/search-bar";
 import {ListFilter} from "@/components/list-filter";
+import {Typography} from "@/components/typography";
+import {TagEditButton} from "@/components/tag-edit-button";
 
-export const IdeaList = () => {
-    const [searchText, setSearchText] = useState("");
+export const TagIdeaList = ({ tagId = '' }: {
+    tagId: string
+}) => {
+    const {
+        data: tagData,
+        isLoading: tagIsLoading,
+        isError: tagIsError,
+    } = useTagDetail({ tagId });
 
     const {
         data,
@@ -19,9 +26,10 @@ export const IdeaList = () => {
         error,
         fetchNextPage,
         hasNextPage,
-        setSearchText: setSearchQueryText,
         setIsDescending: setQueryIsDescending
-    } = useSearchIdeas({});
+    } = useSearchIdeas({
+        tagId
+    });
 
     const { ref, inView } = useInView({
         rootMargin: '200px 0px',
@@ -34,29 +42,18 @@ export const IdeaList = () => {
         }
     }, [inView, hasNextPage, fetchNextPage]);
 
-
-    const handleSearch = (searchText: string) => {
-        setSearchText(searchText);
-        setSearchQueryText(searchText);
-    };
-
-    if (!data?.pages?.[0]?.data.count && !isLoading && !isError) {
-        return <IntroCard />
-    }
-
     return (
         <>
             <div className="w-full">
+                <header className="w-full min-h-12 sticky top-0 flex justify-center items-center text-center mb-6 bg-gray-200">
+                    <Typography variant="subtitle1">{tagData?.data?.name || ''} 아이디어를 가져왔어요.</Typography>
+                </header>
                 <div className="sticky top-0 right-0 w-full bg-gray-200">
-                    <div className="py-5 flex justify-center">
-                        <SearchBar
-                            value={searchText}
-                            onSearch={handleSearch}
-                            onChange={setSearchText}
-                        />
-                    </div>
-                    <div className="pb-5">
+                    <div className="py-5 flex justify-between">
                         <ListFilter setIsDescending={setQueryIsDescending} />
+                        {tagData?.data && (
+                            <TagEditButton tag={tagData.data} />
+                        )}
                     </div>
                 </div>
                 {data?.pages?.map((page, pageIndex) => (
@@ -66,7 +63,7 @@ export const IdeaList = () => {
                         ))}
                         <div ref={ref} />
                     </div>
-            ))}
+                ))}
                 {isLoading && (
                     <div className="w-full h-full flex justify-center align-center">
                         <div className="w-48 h-36">
