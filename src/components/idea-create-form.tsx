@@ -24,6 +24,8 @@ import {useEffect, useState} from "react";
 import {IdeaCreationItem} from "@/types/idea-create";
 import {LogoExclude} from "@/components/icons";
 import Link from "next/link";
+import {useSearchParams} from "next/navigation";
+import {IdeaItem} from "@/types/idea-fetch";
 
 const FormSchema = z.object({
     baseInput: z
@@ -43,10 +45,11 @@ const FormSchema = z.object({
 })
 
 export const IdeaCreateForm = () => {
+    const searchParams = useSearchParams();
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
-    })
-    const { mutate, isPending, isError, isSuccess, data } = useIdeaGenerate()
+    });
+    const { mutate, isPending, isError, isSuccess, data } = useIdeaGenerate();
     const [ideas, setIdeas] = useState<Array<IdeaCreationItem>>([]);
 
     useEffect(() => {
@@ -55,6 +58,20 @@ export const IdeaCreateForm = () => {
             setIdeas(response)
         }
     }, [isSuccess, data]);
+
+    // 미리 아이디어 선택한 채로 진입하는 경우
+    useEffect(() => {
+        const isPrefill = searchParams.get('prefill') === "true"
+        if (isPrefill) {
+            // sessionStorage 에 저장된 selectedIdeas 데이터를 불러온다.
+            const selectedIdeasString = sessionStorage.getItem("selectedIdeas")
+            if (selectedIdeasString) {
+                const preSelectedIdeas = JSON.parse(selectedIdeasString) as IdeaItem[];
+                const prefilledInput = preSelectedIdeas.map(idea => idea.content).join("\n \n")
+                form.setValue('baseInput', prefilledInput || '')
+            }
+        }
+    }, [form, searchParams])
 
     const onCheckIdea = (checkedIdea: IdeaCreationItem) => {
         setIdeas(ideas.map(idea => idea.id === checkedIdea.id ? { ...idea, isChecked: true } : idea));
@@ -82,6 +99,7 @@ export const IdeaCreateForm = () => {
                                     <FormLabel>입력</FormLabel>
                                     <FormControl>
                                         <Textarea
+                                            value={"baseInput"}
                                             placeholder="최대 3000자까지 입력한 내용을 바탕으로 다양한 결과물을 만들 수 있어요."
                                             className="resize-none min-h-96 h-full"
                                             {...field}
