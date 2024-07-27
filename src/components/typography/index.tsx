@@ -8,7 +8,7 @@ type TypographyProps = {
         | 'subtitle2'
         | 'subtitle3'
         | 'content'
-        | 'description'
+        | 'caption'
         | 'alert'
         | 'button1'
         | 'button2'
