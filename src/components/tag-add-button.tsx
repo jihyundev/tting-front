@@ -43,13 +43,13 @@ export const TagAddButton = () => {
                     <Label
                         htmlFor="name"
                         className="text-right"
-                        maxLength={8}
                     >
                         이름
                     </Label>
                     <Input
                         id="name"
                         className="col-span-3"
+                        maxLength={8}
                         onChange={(e) => setName(e.target.value)}
                     />
                 </div>

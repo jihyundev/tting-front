@@ -54,6 +54,7 @@ export const TagEditButton = ({ tag }: {
                             id="name"
                             className="col-span-3"
                             value={name}
+                            maxLength={8}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
@@ -61,7 +62,6 @@ export const TagEditButton = ({ tag }: {
                         <Label
                             htmlFor="color"
                             className="text-right"
-                            maxLength={8}
                         >
                             색상
                         </Label>
