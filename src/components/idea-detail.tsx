@@ -1,6 +1,9 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+'use client'
+
+import {useState} from "react";
+import {zodResolver} from "@hookform/resolvers/zod"
+import {useForm} from "react-hook-form"
+import {z} from "zod"
 
 import {Loader2} from "lucide-react";
 import {
@@ -20,6 +23,7 @@ import type {IdeaItem} from "@/types/idea-fetch";
 import {useIdeaEdit} from "@/hooks/use-idea-edit";
 import {Typography} from "@/components/typography";
 import {formatLastEdited} from "@/utils/date-util";
+import {TagItem} from "@/types/idea-create";
 
 const FormSchema = z.object({
     ideaDetail: z
@@ -35,6 +39,8 @@ const FormSchema = z.object({
 export const IdeaDetail = ({ idea }: {
     idea: IdeaItem
 }) => {
+    const [tags, setTags] = useState<TagItem[]>(idea.tags);
+
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -49,6 +55,14 @@ export const IdeaDetail = ({ idea }: {
             id: idea.id,
             content: data.ideaDetail
         });
+    };
+
+    const onDeleteTag = (tagId?: string) => {
+        if (!tagId) {
+            console.error("tagId is not provided");
+            return;
+        }
+        setTags(tags.filter(tag => tag.id !== tagId));
     };
 
     return (
@@ -77,8 +91,14 @@ export const IdeaDetail = ({ idea }: {
                     />
                     <div className="w-full pt-6 flex justify-between align-center gap-1.5">
                         <div className="flex gap-1.5">
-                            {idea.tags.map(tag => (
-                                <Tag key={tag.id} label={tag.name} color={tag.color} />
+                            {tags.map(tag => (
+                                <Tag
+                                    key={tag.id}
+                                    label={tag.name}
+                                    color={tag.color}
+                                    readOnly={false}
+                                    onDelete={() => onDeleteTag(tag.id || '')}
+                                />
                             ))}
                         </div>
                         <div className="flex gap-2.5">
