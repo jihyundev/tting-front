@@ -1,6 +1,6 @@
 import {AxiosResponse} from "axios";
 import { API } from "@/lib/axios";
-import type {IdeaCreationItem} from "@/types/idea-create";
+import type {IdeaCreationItem, TagItem} from "@/types/idea-create";
 import type {IdeaFetchResponse, IdeaSearchQuery} from "@/types/idea-fetch";
 
 /**
@@ -36,13 +36,16 @@ export const getIdeas = (searchQuery: IdeaSearchQuery): Promise<AxiosResponse<Id
  * 아이디어 수정 요청
  * @param id
  * @param content
+ * @param tags
  */
-export const postIdea = ({ id, content }: {
+export const postIdea = ({ id, content, tags }: {
     id: string;
     content: string;
+    tags: TagItem[];
 }) => {
     return API.post(`/v1/ideas/${id}`, {
-        content
+        content,
+        tags
     });
 }
 

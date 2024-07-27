@@ -53,7 +53,8 @@ export const IdeaDetail = ({ idea }: {
     const onSubmit = (data: z.infer<typeof FormSchema>) => {
         mutate({
             id: idea.id,
-            content: data.ideaDetail
+            content: data.ideaDetail,
+            tags
         });
     };
 
