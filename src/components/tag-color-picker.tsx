@@ -2,7 +2,7 @@ import {TagColors, TAG_COLOR_MAPPER} from "@/types/tag-colors";
 import {useRef, useEffect} from "react";
 
 export const TagColorPicker = ({ selectedColor = 'color1', onSelectColor }: {
-    selectedColor: TagColors;
+    selectedColor?: TagColors;
     onSelectColor: (color: TagColors) => void;
 }) => {
     const colorRefs = useRef<{ [key in TagColors]?: HTMLButtonElement | null }>({});

@@ -7,6 +7,7 @@ import {TagItemCard} from "@/components/tag-item-card";
 import {useTagList} from "@/hooks/use-tag-list";
 import {ListFilter} from "@/components/list-filter";
 import {LoadingAnimation} from "@/components/loading-animation";
+import {TagAddButton} from "@/components/tag-add-button";
 
 export const TagList = () => {
     const {
@@ -50,8 +51,9 @@ export const TagList = () => {
     return (
         <div className="w-full">
             <div className="sticky top-0 right-0 w-full bg-gray-200">
-                <div className="py-5 flex justify-center">
+                <div className="py-5 flex justify-between">
                     <ListFilter setIsDescending={setIsDescending} />
+                    <TagAddButton />
                 </div>
             </div>
             {data?.pages.map((page, i) => (
