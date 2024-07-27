@@ -1,11 +1,12 @@
 import {Suspense} from "react";
 import {Typography} from "@/components/typography";
 import {IdeaCreateForm} from "@/components/idea-create-form";
+import {LoaderCircleIcon} from "lucide-react";
 
 const CreateFormFallback = () => {
     return (
         <div className="flex justify-center items-center h-full">
-            <Typography variant="subtitle1">로딩 중...</Typography>
+            <LoaderCircleIcon size={30} />
         </div>
     )
 }
