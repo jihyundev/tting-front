@@ -8,9 +8,14 @@ import {IntroCard} from "@/components/intro-card";
 import {LoadingAnimation} from "@/components/loading-animation";
 import {SearchBar} from "@/components/search-bar";
 import {ListFilter} from "@/components/list-filter";
+import {Button} from "@/components/ui/button";
+import {IdeaItemSelectCard} from "@/components/idea-item-select-card";
+import {IdeaItem} from "@/types/idea-fetch";
 
 export const IdeaList = () => {
     const [searchText, setSearchText] = useState("");
+    const [mode, setMode] = useState<"default" | "select">("default");
+    const [selectedIdeas, setSelectedIdeas] = useState<IdeaItem[]>([]);
 
     const {
         data,
@@ -40,6 +45,14 @@ export const IdeaList = () => {
         setSearchQueryText(searchText);
     };
 
+    const onSelectIdea = (idea: IdeaItem) => {
+        setSelectedIdeas([...selectedIdeas, idea]);
+    };
+
+    const onUnselectIdea = (idea: IdeaItem) => {
+        setSelectedIdeas(selectedIdeas.filter(selectedIdea => selectedIdea.id !== idea.id));
+    }
+
     if (!data?.pages?.[0]?.data.count && !isLoading && !isError) {
         return <IntroCard />
     }
@@ -55,14 +68,38 @@ export const IdeaList = () => {
                             onChange={setSearchText}
                         />
                     </div>
-                    <div className="pb-5">
+                    <div className="pb-5 flex justify-between">
                         <ListFilter setIsDescending={setQueryIsDescending} />
+                        {mode === "default" && (
+                            <Button
+                                onClick={() => setMode("select")}
+                            >
+                                아이디어 선택
+                            </Button>
+                        )}
+                        {mode === "select" && (
+                            <Button
+                                onClick={() => console.log("데이터 가지고 아이디어 생성 화면으로 이동")}
+                                disabled={selectedIdeas.length === 0}
+                            >
+                                조합하기
+                            </Button>
+                        )}
                     </div>
                 </div>
                 {data?.pages?.map((page, pageIndex) => (
-                    <div key={pageIndex} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                    <div key={pageIndex} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-1">
                         {page.data.data.map(idea => (
-                            <IdeaItemCard key={idea.id} idea={idea} />
+                            (mode === "select") ? (
+                                <IdeaItemSelectCard
+                                    key={idea.id}
+                                    idea={idea}
+                                    onSelect={onSelectIdea}
+                                    onUnselect={onUnselectIdea}
+                                />
+                            ) : (
+                                <IdeaItemCard key={idea.id} idea={idea} />
+                            )
                         ))}
                         <div ref={ref} />
                     </div>
