@@ -16,7 +16,6 @@ export const TagIdeaList = ({ tagId = '' }: {
         data: tagData,
         isLoading: tagIsLoading,
         isError: tagIsError,
-        error: tagError
     } = useTagDetail({ tagId });
 
     const {

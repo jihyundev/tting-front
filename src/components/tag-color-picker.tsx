@@ -18,7 +18,9 @@ export const TagColorPicker = ({ selectedColor = 'color1', onSelectColor }: {
         return (Object.keys(TAG_COLOR_MAPPER) as TagColors[]).map(color => (
             <button
                 key={color}
-                ref={el => colorRefs.current[color] = el}
+                ref={el => {
+                    colorRefs.current[color] = el
+                }}
                 className={`${TAG_COLOR_MAPPER[color]} w-6 h-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white`}
                 onClick={() => onSelectColor(color)}
                 aria-label={`Select ${color}`}
