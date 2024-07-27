@@ -7,7 +7,7 @@ import {IdeaItemCard} from "@/components/idea-item-card";
 import {IntroCard} from "@/components/intro-card";
 import {LoadingAnimation} from "@/components/loading-animation";
 import {SearchBar} from "@/components/search-bar";
-import {IdeaFilter} from "@/components/idea-filter";
+import {ListFilter} from "@/components/list-filter";
 
 export const IdeaList = () => {
     const [searchText, setSearchText] = useState("");
@@ -56,7 +56,7 @@ export const IdeaList = () => {
                         />
                     </div>
                     <div className="pb-5">
-                        <IdeaFilter setIsDescending={setQueryIsDescending} />
+                        <ListFilter setIsDescending={setQueryIsDescending} />
                     </div>
                 </div>
                 {data?.pages?.map((page, pageIndex) => (

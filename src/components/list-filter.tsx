@@ -10,7 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { FilterIcon } from "lucide-react";
 
-export const IdeaFilter = ({ setIsDescending }: {
+export const ListFilter = ({ setIsDescending }: {
     setIsDescending: (value: boolean) => void
 }) => {
     const [selectedFilter, setSelectedFilter] = useState<'최신순' | '생성순' | ''>('');

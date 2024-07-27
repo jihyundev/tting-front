@@ -82,7 +82,7 @@ export const IdeaDetail = ({ idea }: {
                             ))}
                         </div>
                         <div className="flex gap-2.5">
-                            <Typography variant="caption" className="pt-4">{formatLastEdited(idea.createdAt)}</Typography>
+                            <Typography variant="caption" className="pt-4">{formatLastEdited(idea.updatedAt)}</Typography>
                             <Button
                                 type="submit"
                                 disabled={isPending}
