@@ -31,3 +31,17 @@ export const postTag = ({ name, color }: {
 }): Promise<AxiosResponse<Tag>> => {
     return API.post('/v1/tags', { name, color });
 }
+
+/**
+ * 태그 수정 요청
+ * @param tagId
+ * @param name
+ * @param color
+ */
+export const postTagUpdate = ({ tagId, name, color }: {
+    tagId: string;
+    name: string;
+    color: TagColors;
+}): Promise<AxiosResponse<Tag>> => {
+    return API.put(`/v1/tags/${tagId}`, { name, color });
+}

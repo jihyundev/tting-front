@@ -8,6 +8,7 @@ import {IdeaItemCard} from "@/components/idea-item-card";
 import {LoadingAnimation} from "@/components/loading-animation";
 import {ListFilter} from "@/components/list-filter";
 import {Typography} from "@/components/typography";
+import {TagEditButton} from "@/components/tag-edit-button";
 
 export const TagIdeaList = ({ tagId = '' }: {
     tagId: string
@@ -48,8 +49,11 @@ export const TagIdeaList = ({ tagId = '' }: {
                     <Typography variant="subtitle1">{tagData?.data?.name || ''} 아이디어를 가져왔어요.</Typography>
                 </header>
                 <div className="sticky top-0 right-0 w-full bg-gray-200">
-                    <div className="py-5 flex justify-center">
+                    <div className="py-5 flex justify-between">
                         <ListFilter setIsDescending={setQueryIsDescending} />
+                        {tagData?.data && (
+                            <TagEditButton tag={tagData.data} />
+                        )}
                     </div>
                 </div>
                 {data?.pages?.map((page, pageIndex) => (
