@@ -12,9 +12,9 @@ import {
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {TagColorPicker} from "@/components/tag-color-picker";
-import {useTagCreate} from "@/hooks/use-tag-create";
 import {TagColors} from "@/types/tag-colors";
 import {Tag} from "@/types/tag-fetch";
+import {useTagEdit} from "@/hooks/use-tag-edit";
 
 export const TagEditButton = ({ tag }: {
     tag: Tag
@@ -22,10 +22,16 @@ export const TagEditButton = ({ tag }: {
     const [name, setName] = useState(tag.name);
     const [color, setColor] = useState<TagColors>(tag.color || 'color1');
 
-    const { mutate, isPending } = useTagCreate();
+    const { mutate, isPending } = useTagEdit();
     const onSubmitTag = () => {
-        mutate({ name, color });
+        mutate({
+            tagId: tag.id,
+            name,
+            color
+        });
     };
+
+    const isButtonDisabled = !name || !color || isPending;
 
     return (
         <Dialog>
@@ -52,7 +58,11 @@ export const TagEditButton = ({ tag }: {
                         />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="color" className="text-right">
+                        <Label
+                            htmlFor="color"
+                            className="text-right"
+                            maxLength={8}
+                        >
                             색상
                         </Label>
                         <div className="col-span-3">
@@ -68,7 +78,7 @@ export const TagEditButton = ({ tag }: {
                 <DialogFooter>
                     <Button
                         type="submit"
-                        disabled={isPending}
+                        disabled={isButtonDisabled}
                         onClick={onSubmitTag}
                     >
                         {isPending ? (

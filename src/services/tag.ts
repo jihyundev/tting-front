@@ -43,5 +43,5 @@ export const postTagUpdate = ({ tagId, name, color }: {
     name: string;
     color: TagColors;
 }): Promise<AxiosResponse<Tag>> => {
-    return API.put(`/v1/tags/${tagId}`, { name, color });
+    return API.post(`/v1/tags/${tagId}`, { name, color });
 }

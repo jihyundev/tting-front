@@ -24,6 +24,8 @@ export const TagAddButton = () => {
         mutate({ name, color });
     };
 
+    const isButtonDisabled = !name || !color || isPending;
+
     return (
     <Dialog>
         <DialogTrigger asChild>
@@ -38,7 +40,11 @@ export const TagAddButton = () => {
             </DialogHeader>
             <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="name" className="text-right">
+                    <Label
+                        htmlFor="name"
+                        className="text-right"
+                        maxLength={8}
+                    >
                         이름
                     </Label>
                     <Input
@@ -61,7 +67,7 @@ export const TagAddButton = () => {
             <DialogFooter>
                 <Button
                     type="submit"
-                    disabled={isPending}
+                    disabled={isButtonDisabled}
                     onClick={onSubmitTag}
                 >
                     {isPending ? (
