@@ -6,8 +6,8 @@ import {useInView} from "react-intersection-observer";
 import {TagItemCard} from "@/components/tag-item-card";
 import {useTagList} from "@/hooks/use-tag-list";
 import {ListFilter} from "@/components/list-filter";
-import {LoadingAnimation} from "@/components/loading-animation";
 import {TagAddButton} from "@/components/tag-add-button";
+import {SkeletonCard} from "@/components/skeleton-card";
 
 export const TagList = () => {
     const {
@@ -65,10 +65,15 @@ export const TagList = () => {
                 </div>
             ))}
             {isLoading && (
-                <div className="w-full h-full flex justify-center align-center">
-                    <div className="w-48 h-36">
-                        <LoadingAnimation />
-                    </div>
+                <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                    <SkeletonCard />
+                    <SkeletonCard />
+                    <SkeletonCard />
+                    <SkeletonCard />
+                    <SkeletonCard />
+                    <SkeletonCard />
+                    <SkeletonCard />
+                    <SkeletonCard />
                 </div>
             )}
         </div>

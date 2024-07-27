@@ -6,13 +6,13 @@ import {useInView} from "react-intersection-observer";
 import {useSearchIdeas} from "@/hooks/use-search-ideas";
 import {IdeaItemCard} from "@/components/idea-item-card";
 import {IntroCard} from "@/components/intro-card";
-import {LoadingAnimation} from "@/components/loading-animation";
 import {SearchBar} from "@/components/search-bar";
 import {ListFilter} from "@/components/list-filter";
 import {Button} from "@/components/ui/button";
 import {IdeaItemSelectCard} from "@/components/idea-item-select-card";
 import {IdeaItem} from "@/types/idea-fetch";
 import {IdeasDeleteButton} from "@/components/ideas-delete-button";
+import {SkeletonCard} from "@/components/skeleton-card";
 
 export const IdeaList = () => {
     const [searchText, setSearchText] = useState("");
@@ -117,10 +117,15 @@ export const IdeaList = () => {
                     </div>
             ))}
                 {isLoading && (
-                    <div className="w-full h-full flex justify-center align-center">
-                        <div className="w-48 h-36">
-                            <LoadingAnimation />
-                        </div>
+                    <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-1">
+                        <SkeletonCard />
+                        <SkeletonCard />
+                        <SkeletonCard />
+                        <SkeletonCard />
+                        <SkeletonCard />
+                        <SkeletonCard />
+                        <SkeletonCard />
+                        <SkeletonCard />
                     </div>
                 )}
                 {isError && (
