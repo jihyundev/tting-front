@@ -31,3 +31,17 @@ export const getIdeas = (searchQuery: IdeaSearchQuery): Promise<AxiosResponse<Id
         params: searchQuery
     });
 }
+
+/**
+ * 아이디어 수정 요청
+ * @param id
+ * @param content
+ */
+export const postIdea = ({ id, content }: {
+    id: string;
+    content: string;
+}) => {
+    return API.post(`/v1/ideas/${id}`, {
+        content
+    });
+}

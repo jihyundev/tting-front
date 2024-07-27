@@ -26,6 +26,7 @@ export const Tag = ({ label, color, onClick }: {
     }
     return (
         <button
+            type="button"
             className={`p-1.5 h-7 text-ellipsis overflow-hidden rounded-full ${colorClasses[color]}`}
             onClick={onSelectTag}
         >
