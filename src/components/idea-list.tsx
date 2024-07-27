@@ -1,7 +1,8 @@
 'use client'
 import Image from "next/image";
+import {useRouter} from 'next/navigation'
 import {useEffect, useState} from "react";
-import { useInView } from "react-intersection-observer";
+import {useInView} from "react-intersection-observer";
 import {useSearchIdeas} from "@/hooks/use-search-ideas";
 import {IdeaItemCard} from "@/components/idea-item-card";
 import {IntroCard} from "@/components/intro-card";
@@ -16,6 +17,7 @@ export const IdeaList = () => {
     const [searchText, setSearchText] = useState("");
     const [mode, setMode] = useState<"default" | "select">("default");
     const [selectedIdeas, setSelectedIdeas] = useState<IdeaItem[]>([]);
+    const router = useRouter();
 
     const {
         data,
@@ -53,6 +55,12 @@ export const IdeaList = () => {
         setSelectedIdeas(selectedIdeas.filter(selectedIdea => selectedIdea.id !== idea.id));
     }
 
+    const navigateToIdeaCreate = () => {
+        // 데이터 가지고 아이디어 생성 화면으로 이동
+        sessionStorage.setItem("selectedIdeas", JSON.stringify(selectedIdeas));
+        router.push("/idea/create?prefill=true");
+    }
+
     if (!data?.pages?.[0]?.data.count && !isLoading && !isError) {
         return <IntroCard />
     }
@@ -79,7 +87,7 @@ export const IdeaList = () => {
                         )}
                         {mode === "select" && (
                             <Button
-                                onClick={() => console.log("데이터 가지고 아이디어 생성 화면으로 이동")}
+                                onClick={navigateToIdeaCreate}
                                 disabled={selectedIdeas.length === 0}
                             >
                                 조합하기
