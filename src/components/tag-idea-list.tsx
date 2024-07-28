@@ -5,10 +5,10 @@ import {useInView} from "react-intersection-observer";
 import {useSearchIdeas} from "@/hooks/use-search-ideas";
 import {useTagDetail} from "@/hooks/use-tag-detail";
 import {IdeaItemCard} from "@/components/idea-item-card";
-import {LoadingAnimation} from "@/components/loading-animation";
 import {ListFilter} from "@/components/list-filter";
 import {Typography} from "@/components/typography";
 import {TagEditButton} from "@/components/tag-edit-button";
+import {SkeletonCard} from "@/components/skeleton-card";
 
 export const TagIdeaList = ({ tagId = '' }: {
     tagId: string
@@ -65,10 +65,15 @@ export const TagIdeaList = ({ tagId = '' }: {
                     </div>
                 ))}
                 {isLoading && (
-                    <div className="w-full h-full flex justify-center align-center">
-                        <div className="w-48 h-36">
-                            <LoadingAnimation />
-                        </div>
+                    <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                        <SkeletonCard />
+                        <SkeletonCard />
+                        <SkeletonCard />
+                        <SkeletonCard />
+                        <SkeletonCard />
+                        <SkeletonCard />
+                        <SkeletonCard />
+                        <SkeletonCard />
                     </div>
                 )}
                 {isError && (
