@@ -12,7 +12,7 @@ export const TagItemCard = ({ tag }: {
 }) => {
     return (
         <Link href={`tags/${tag.id}`}>
-            <Card className="h-full">
+            <Card className="h-full flex flex-col justify-end">
                 <CardContent className="overflow-hidden pt-6">
                     <Typography variant="body3" className="line-clamp-4">
                         {tag.latestIdeaContent || '아이디어가 비어있습니다.'}

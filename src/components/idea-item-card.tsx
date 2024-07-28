@@ -13,7 +13,7 @@ export const IdeaItemCard = ({idea}: { idea: IdeaItem }) => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Card>
+                <Card className="flex flex-col justify-end">
                     <CardHeader>
                         {idea.content}
                     </CardHeader>
