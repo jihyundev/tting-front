@@ -27,8 +27,14 @@ export const postGeneratedIdea = (idea: IdeaCreationItem) => {
  * 아이디어 목록 조회 요청
  */
 export const getIdeas = (searchQuery: IdeaSearchQuery): Promise<AxiosResponse<IdeaFetchResponse>> => {
+    let payload = { ... searchQuery }
+    // tagId 가 없는 경우에는 tagId 를 제외한 나머지 쿼리를 전달
+    if (!searchQuery.tagId) {
+        const { tagId, ...rest } = searchQuery;
+        payload = rest;
+    }
     return API.get('/v1/ideas', {
-        params: searchQuery
+        params: payload
     });
 }
 
