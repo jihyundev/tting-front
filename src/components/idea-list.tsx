@@ -68,7 +68,11 @@ export const IdeaList = () => {
     }
 
     if (!data?.pages?.[0]?.data.count && !isLoading && !isError) {
-        return <IntroCard />
+        return (
+            <div className="mt-40">
+                <IntroCard />
+            </div>
+        )
     }
 
     return (

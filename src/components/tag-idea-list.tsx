@@ -9,6 +9,7 @@ import {ListFilter} from "@/components/list-filter";
 import {Typography} from "@/components/typography";
 import {TagEditButton} from "@/components/tag-edit-button";
 import {SkeletonCard} from "@/components/skeleton-card";
+import {IntroCard} from "@/components/intro-card";
 
 export const TagIdeaList = ({ tagId = '' }: {
     tagId: string
@@ -64,6 +65,11 @@ export const TagIdeaList = ({ tagId = '' }: {
                         <div ref={ref} />
                     </div>
                 ))}
+                {(!data?.pages?.[0]?.data.count && !isLoading && !isError) && (
+                    <div className="mt-40">
+                        <IntroCard />
+                    </div>
+                )}
                 {isLoading && (
                     <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                         <SkeletonCard />
