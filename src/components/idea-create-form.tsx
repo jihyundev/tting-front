@@ -95,12 +95,12 @@ export const IdeaCreateForm = () => {
                             control={form.control}
                             name="baseInput"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem className="h-full">
                                     <FormLabel>입력</FormLabel>
                                     <FormControl>
                                         <Textarea
                                             placeholder="최대 3000자까지 입력한 내용을 바탕으로 다양한 결과물을 만들 수 있어요."
-                                            className="resize-none min-h-96 h-full"
+                                            className="resize-none min-h-80 h-full"
                                             {...field}
                                         />
                                     </FormControl>
@@ -112,7 +112,7 @@ export const IdeaCreateForm = () => {
                             control={form.control}
                             name="instruction"
                             render={({ field }) => (
-                                <FormItem>
+                                <FormItem className="h-32">
                                     <FormLabel>요청사항</FormLabel>
                                     <FormControl>
                                         <Textarea
