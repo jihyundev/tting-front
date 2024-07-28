@@ -1,7 +1,7 @@
 import {TagItem} from "@/types/idea-create";
 
 type IdeaSearchQuery = {
-    searchText?: string;
+    text?: string;
     offset?: number;
     limit?: number;
     descending?: boolean;

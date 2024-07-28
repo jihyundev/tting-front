@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useQuery, useInfiniteQuery} from "@tanstack/react-query";
+import {useInfiniteQuery} from "@tanstack/react-query";
 import {getIdeas} from "@/services/idea";
 
 export const useSearchIdeas = ({
@@ -20,7 +20,7 @@ export const useSearchIdeas = ({
     } = useInfiniteQuery({
         queryKey: ['getIdeas', searchText, pageSize, isDescending],
         queryFn: ({ pageParam = 0 }) => getIdeas({
-            searchText,
+            text: searchText,
             offset: pageParam * pageSize,
             limit: pageSize,
             descending: isDescending,
