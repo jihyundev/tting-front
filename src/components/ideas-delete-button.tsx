@@ -14,13 +14,15 @@ import {
 } from "@/components/ui/alert-dialog"
 import {IdeaItem} from "@/types/idea-fetch";
 
-export const IdeasDeleteButton = ({ selectedIdeas }: {
-    selectedIdeas: IdeaItem[]
+export const IdeasDeleteButton = ({ selectedIdeas, onDeleteIdeas }: {
+    selectedIdeas: IdeaItem[],
+    onDeleteIdeas: () => void
 }) => {
     const { mutate, isPending, isError, isSuccess } = useIdeasDelete();
 
     const deleteSelectedIdeas = () => {
         mutate(selectedIdeas.map(idea => idea.id));
+        onDeleteIdeas();
     }
 
     return (
