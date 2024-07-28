@@ -77,7 +77,7 @@ export const UserMenu = () => {
                         <DropdownMenuItem onClick={onSignOut}>로그아웃</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
-                <Dialog open={isDialogOpen}>
+                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                     <DialogContent>
                         <DialogHeader>
                             <DialogTitle>계정 탈퇴</DialogTitle>
