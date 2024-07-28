@@ -11,10 +11,13 @@ export const useTagEdit = () => {
             name: string;
             color: TagColors;
         }) => postTagUpdate({tagId, name, color}),
-        onSuccess: () => queryClient.invalidateQueries({
-            queryKey: ['getTags']
-        })
+        onSuccess: (data, variables) => {
+            queryClient.invalidateQueries({ queryKey: ['getTags'] });
+            queryClient.invalidateQueries({ queryKey: ['getTag', variables.tagId] });
+        }
     });
+
+    const errorMessage = error?.response?.data?.message || error?.message;
 
     return {
         mutate,
@@ -22,6 +25,7 @@ export const useTagEdit = () => {
         isError,
         isSuccess,
         data,
-        error
+        error,
+        errorMessage
     };
 }

@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Loader2} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {
@@ -14,20 +14,28 @@ import {Input} from "@/components/ui/input";
 import {TagColorPicker} from "@/components/tag-color-picker";
 import {useTagCreate} from "@/hooks/use-tag-create";
 import {TagColors} from "@/types/tag-colors";
+import {Typography} from "@/components/typography";
 
 export const TagAddButton = () => {
     const [name, setName] = useState('');
     const [color, setColor] = useState<TagColors>('color1');
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-    const { mutate, isPending } = useTagCreate();
+    const { mutate, isPending, isSuccess, isError, errorMessage } = useTagCreate();
     const onSubmitTag = () => {
         mutate({ name, color });
     };
 
     const isButtonDisabled = !name || !color || isPending;
 
+    useEffect(() => {
+        if (isSuccess) {
+            setIsAddModalOpen(false);
+        }
+    }, [isSuccess]);
+
     return (
-    <Dialog>
+    <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
         <DialogTrigger asChild>
             <Button type="button">태그 추가</Button>
         </DialogTrigger>
@@ -65,6 +73,9 @@ export const TagAddButton = () => {
                 </div>
             </div>
             <DialogFooter>
+                {isError && errorMessage && (
+                    <Typography variant="alert">{errorMessage}</Typography>
+                )}
                 <Button
                     type="submit"
                     disabled={isButtonDisabled}

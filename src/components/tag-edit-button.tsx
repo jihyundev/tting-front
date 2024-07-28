@@ -1,8 +1,8 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Loader2} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {
-    Dialog,
+    Dialog, DialogClose,
     DialogContent,
     DialogDescription, DialogFooter,
     DialogHeader,
@@ -15,14 +15,16 @@ import {TagColorPicker} from "@/components/tag-color-picker";
 import {TagColors} from "@/types/tag-colors";
 import {Tag} from "@/types/tag-fetch";
 import {useTagEdit} from "@/hooks/use-tag-edit";
+import {Typography} from "@/components/typography";
 
 export const TagEditButton = ({ tag }: {
     tag: Tag
 }) => {
     const [name, setName] = useState(tag.name);
     const [color, setColor] = useState<TagColors>(tag.color || 'color1');
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-    const { mutate, isPending } = useTagEdit();
+    const { mutate, isPending, isSuccess, isError, errorMessage } = useTagEdit();
     const onSubmitTag = () => {
         mutate({
             tagId: tag.id,
@@ -33,8 +35,14 @@ export const TagEditButton = ({ tag }: {
 
     const isButtonDisabled = !name || !color || isPending;
 
+    useEffect(() => {
+        if (isSuccess) {
+            setIsEditModalOpen(false);
+        }
+    }, [isSuccess]);
+
     return (
-        <Dialog>
+        <Dialog open={isEditModalOpen} onOpenChange={setIsEditModalOpen}>
             <DialogTrigger asChild>
                 <Button type="button">태그 수정</Button>
             </DialogTrigger>
@@ -76,6 +84,9 @@ export const TagEditButton = ({ tag }: {
                     </div>
                 </div>
                 <DialogFooter>
+                    {isError && errorMessage && (
+                        <Typography variant="alert">{errorMessage}</Typography>
+                    )}
                     <Button
                         type="submit"
                         disabled={isButtonDisabled}

@@ -15,12 +15,15 @@ export const useTagCreate = () => {
         })
     });
 
+    const errorMessage = error?.response?.data?.message || error?.message;
+
     return {
         mutate,
         isPending,
         isError,
         isSuccess,
         data,
-        error
+        error,
+        errorMessage
     }
 }
