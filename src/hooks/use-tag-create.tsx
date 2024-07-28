@@ -1,6 +1,7 @@
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {postTag} from "@/services/tag";
 import {TagColors} from "@/types/tag-colors";
+import {ErrorResponse} from "@/types/error-response";
 
 export const useTagCreate = () => {
     const queryClient = useQueryClient();
@@ -15,7 +16,7 @@ export const useTagCreate = () => {
         })
     });
 
-    const errorMessage = error?.response?.data?.message || error?.message;
+    const errorMessage = (error as ErrorResponse)?.response?.data?.message || error?.message;
 
     return {
         mutate,
