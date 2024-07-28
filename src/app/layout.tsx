@@ -13,8 +13,8 @@ const pretendard = localFont({
 })
 
 export const metadata: Metadata = {
-  title: "TTING",
-  description: "Idea generator for developers",
+  title: "띵! - 아이디어 관리 도구",
+  description: "당신만을 위한, 개인 아이디어 관리 도구 ‘띵!’",
 };
 
 export default function RootLayout({
