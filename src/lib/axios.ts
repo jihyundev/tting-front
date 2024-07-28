@@ -5,7 +5,7 @@ const isServer = typeof window === 'undefined';
 
 const instance = axios.create({
     baseURL: "https://third-brain-tting.kro.kr/",
-    timeout: 10000,
+    timeout: 60000,
     headers: {
         "Content-Type": "application/json",
     }
