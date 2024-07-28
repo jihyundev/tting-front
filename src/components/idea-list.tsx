@@ -62,6 +62,11 @@ export const IdeaList = () => {
         router.push("/idea/create?prefill=true");
     }
 
+    const onDeleteIdeas = () => {
+        setMode("default")
+        setSelectedIdeas([]);
+    }
+
     if (!data?.pages?.[0]?.data.count && !isLoading && !isError) {
         return <IntroCard />
     }
@@ -94,7 +99,10 @@ export const IdeaList = () => {
                                 >
                                     조합하기
                                 </Button>
-                                <IdeasDeleteButton selectedIdeas={selectedIdeas} />
+                                <IdeasDeleteButton
+                                    selectedIdeas={selectedIdeas}
+                                    onDeleteIdeas={onDeleteIdeas}
+                                />
                             </div>
                         )}
                     </div>
