@@ -39,6 +39,12 @@ export const postProfile = async ({ name, profileImage }: {
 /**
  * 유저 계정 삭제 요청
  */
-export const deleteUser = async () => {
-    return await API.delete('/v1/users');
+export const deleteUser = async ({ text }: {
+    text: string
+}) => {
+    return await API.delete('/v1/users', {
+        data: {
+            text
+        }
+    });
 }
