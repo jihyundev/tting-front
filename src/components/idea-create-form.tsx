@@ -99,7 +99,7 @@ export const IdeaCreateForm = () => {
                                     <FormLabel>입력</FormLabel>
                                     <FormControl>
                                         <Textarea
-                                            placeholder="최대 3000자까지 입력한 내용을 바탕으로 다양한 결과물을 만들 수 있어요."
+                                            placeholder="아이디어를 뽑고 싶은 장문의 콘텐츠를 입력해보세요."
                                             className="resize-none min-h-80 h-full"
                                             {...field}
                                         />
