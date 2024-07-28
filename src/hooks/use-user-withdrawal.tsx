@@ -6,7 +6,9 @@ export const useUserWithdrawal = () => {
 
     const { mutate, isPending, isError, isSuccess, data, error } = useMutation({
         mutationKey: ['deleteUser'],
-        mutationFn: ({ text }) => deleteUser({ text }),
+        mutationFn: ({ text }: {
+            text: string;
+        }) => deleteUser({ text }),
         onSuccess: () => queryClient.invalidateQueries({
             queryKey: ['getMe']
         })
