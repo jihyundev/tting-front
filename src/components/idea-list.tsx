@@ -69,8 +69,10 @@ export const IdeaList = () => {
 
     if (!data?.pages?.[0]?.data.count && !isLoading && !isError) {
         return (
-            <div className="mt-40">
-                <IntroCard />
+            <div className="mt-40 w-full flex justify-center">
+                <div className="max-w-xl">
+                    <IntroCard />
+                </div>
             </div>
         )
     }
