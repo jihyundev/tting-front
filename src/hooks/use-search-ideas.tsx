@@ -18,7 +18,7 @@ export const useSearchIdeas = ({
         hasNextPage,
         isFetchingNextPage
     } = useInfiniteQuery({
-        queryKey: ['getIdeas', searchText, pageSize, isDescending],
+        queryKey: ['getIdeas', searchText, pageSize, isDescending, tagId],
         queryFn: ({ pageParam = 0 }) => getIdeas({
             text: searchText,
             offset: pageParam * pageSize,
