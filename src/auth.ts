@@ -15,8 +15,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 const { provider, access_token, refresh_token } = account;
                 const response = await postSocialLogin(provider, access_token)
                 const { data } = response
-                cookies().set("accessToken", data.accessToken)
-                cookies().set("refreshToken", data.refreshToken)
+                cookies().set({
+                    name: 'accessToken',
+                    value: data.accessToken,
+                    maxAge: 7 * 24 * 60 * 60,
+                })
+                cookies().set({
+                    name: 'refreshToken',
+                    value: data.refreshToken,
+                    maxAge: 7 * 24 * 60 * 60,
+                })
                 return true
             }
             return false;
