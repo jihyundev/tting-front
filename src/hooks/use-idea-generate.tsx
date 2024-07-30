@@ -3,7 +3,7 @@ import {postGenerateIdea} from "@/services/idea";
 
 export const useIdeaGenerate = () => {
     const queryClient = useQueryClient();
-    const { mutate, isPending, isError, isSuccess, data, error } = useMutation({
+    const mutation = useMutation({
         mutationKey: ['generateIdeas'],
         mutationFn: ({baseInput, instruction}: {
             baseInput: string;
@@ -15,12 +15,17 @@ export const useIdeaGenerate = () => {
         }
     });
 
+    const { mutate, isPending, isError, isSuccess, data, error } = mutation;
+
+    const reset = () => mutation.reset();
+
     return {
         mutate,
         isPending,
         isError,
         isSuccess,
         data,
-        error
+        error,
+        reset
     };
 }
