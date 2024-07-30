@@ -23,7 +23,6 @@ import { IdeaSaveCard } from "@/components/idea-save-card";
 import {useEffect, useState} from "react";
 import {IdeaCreationItem} from "@/types/idea-create";
 import {LogoExclude} from "@/components/icons";
-import Link from "next/link";
 import {useSearchParams} from "next/navigation";
 import {IdeaItem} from "@/types/idea-fetch";
 
@@ -157,9 +156,6 @@ export const IdeaCreateForm = () => {
                             <div className="flex flex-col justify-center items-center gap-5 h-full">
                                 <LogoExclude />
                                 <Typography variant="subtitle3">아이디어를 모두 확인했어요!</Typography>
-                                <Link href="/">
-                                    <Button type="button">돌아가기</Button>
-                                </Link>
                             </div>
                         )}
                         {!isPending && !isError && !isSuccess && (
