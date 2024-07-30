@@ -33,8 +33,8 @@ const FormSchema = z.object({
         .min(5, {
             message: "최소 5자 이상 입력해주세요.",
         })
-        .max(3000, {
-            message: "입력 내용이 3000자를 초과했어요. 내용을 나눠서 입력해주세요.",
+        .max(10000, {
+            message: "입력 내용이 10000자를 초과했어요. 내용을 나눠서 입력해주세요.",
         }),
     instruction: z
         .string()
