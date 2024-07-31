@@ -48,7 +48,7 @@ export const IdeaCreateForm = () => {
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
     });
-    const { mutate, isPending, isError, isSuccess, data } = useIdeaGenerate();
+    const { mutate, isPending, isError, isSuccess, data, reset } = useIdeaGenerate();
     const [ideas, setIdeas] = useState<Array<IdeaCreationItem>>([]);
 
     useEffect(() => {
@@ -75,6 +75,13 @@ export const IdeaCreateForm = () => {
     const onCheckIdea = (checkedIdea: IdeaCreationItem) => {
         setIdeas(ideas.map(idea => idea.id === checkedIdea.id ? { ...idea, isChecked: true } : idea));
     }
+
+    const onReset = () => {
+        // form.setValue('baseInput', '');
+        // form.setValue('instruction', '');
+        setIdeas([]);
+        reset();
+    };
 
     const ideasFiltered = () => ideas.filter(item => !item.isChecked);
 
@@ -156,6 +163,7 @@ export const IdeaCreateForm = () => {
                             <div className="flex flex-col justify-center items-center gap-5 h-full">
                                 <LogoExclude />
                                 <Typography variant="subtitle3">아이디어를 모두 확인했어요!</Typography>
+                                <Button type="button" onClick={onReset}>돌아가기</Button>
                             </div>
                         )}
                         {!isPending && !isError && !isSuccess && (
