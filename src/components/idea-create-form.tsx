@@ -163,7 +163,7 @@ export const IdeaCreateForm = () => {
                             <div className="flex flex-col justify-center items-center gap-5 h-full">
                                 <LogoExclude />
                                 <Typography variant="subtitle3">아이디어를 모두 확인했어요!</Typography>
-                                <Button type="button" onClick={onReset}>다시 만들어보기</Button>
+                                <Button type="button" onClick={onReset}>돌아가기</Button>
                             </div>
                         )}
                         {!isPending && !isError && !isSuccess && (
