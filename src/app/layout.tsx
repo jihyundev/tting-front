@@ -14,10 +14,10 @@ const pretendard = localFont({
 
 export const metadata: Metadata = {
   title: "띵! - 아이디어 관리 도구",
-  description: "당신만을 위한, 개인 아이디어 관리 도구 ‘띵!’",
+  description: "나만의 아이디어 관리 도구 ‘띵!’",
   metadataBase: new URL("https://tting-front.vercel.app/"),
   openGraph: {
-    images: './opengraph-image.jpg'
+    images: './opengraph-image.png'
   }
 };
 
