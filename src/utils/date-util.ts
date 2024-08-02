@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 
 export const formatLastEdited = (lastEdited: string) => {
+    if (!lastEdited) return "";
+
     const now = dayjs();
     const edited = dayjs(lastEdited);
     const diffDays = now.diff(edited, 'day');

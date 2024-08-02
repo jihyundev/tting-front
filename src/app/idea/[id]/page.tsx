@@ -1,5 +1,11 @@
-export default function IdeaDetailPage() {
+import {IdeaDetailCard} from "@/components/idea-detail-card";
+
+export default function IdeaDetailPage({ params }: {
+    params: { id: string }
+}) {
     return (
-        <div>아이디어 상세 페이지</div>
+        <div className="w-full h-full flex justify-center items-center">
+            <IdeaDetailCard id={params.id} />
+        </div>
     )
 }

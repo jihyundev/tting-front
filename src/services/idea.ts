@@ -2,6 +2,7 @@ import {AxiosResponse} from "axios";
 import { API } from "@/lib/axios";
 import type {IdeaCreationItem, TagItem} from "@/types/idea-create";
 import type {IdeaFetchResponse, IdeaSearchQuery} from "@/types/idea-fetch";
+import {IdeaItem} from "@/types/idea-fetch";
 
 /**
  * 아이디어 생성 요청
@@ -36,6 +37,14 @@ export const getIdeas = (searchQuery: IdeaSearchQuery): Promise<AxiosResponse<Id
     return API.get('/v1/ideas', {
         params: payload
     });
+}
+
+/**
+ * 아이디어 상세 조회 요청
+ * @param id
+ */
+export const getIdea = (id: string): Promise<AxiosResponse<IdeaItem>> => {
+    return API.get(`/v1/ideas/${id}`);
 }
 
 /**
