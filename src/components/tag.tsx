@@ -6,9 +6,10 @@ import {Typography} from "@/components/typography";
 import {TagColors} from "@/types/tag-colors";
 import {TAG_COLOR_MAPPER} from "@/types/tag-colors";
 
-export const Tag = ({ label, color, onClick, readOnly = true, onDelete = () => {} }: {
+export const Tag = ({ label, color, size = 'S', onClick, readOnly = true, onDelete = () => {} }: {
     label: string,
     color: TagColors,
+    size?: 'S' | 'M',
     onClick?: (label: string) => void,
     readOnly?: boolean,
     onDelete?: () => void
@@ -19,9 +20,19 @@ export const Tag = ({ label, color, onClick, readOnly = true, onDelete = () => {
             onClick(label)
         }
     }
+
+    const getSizeClass = () => {
+        if (size === 'S') {
+            return `p-1.5 h-7`
+        }
+        if (size === 'M') {
+            return `px-2 py-3 h-9`
+        }
+        return `p-1.5 h-7`
+    }
     return (
         <div
-            className={`flex items-center p-1.5 h-7 text-ellipsis overflow-hidden rounded-full ${TAG_COLOR_MAPPER[color]}`}
+            className={`flex items-center ${getSizeClass()} text-ellipsis overflow-hidden rounded-full ${TAG_COLOR_MAPPER[color]}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -34,6 +45,7 @@ export const Tag = ({ label, color, onClick, readOnly = true, onDelete = () => {
             {!readOnly && isHovered && (
                 <XIcon
                     size={16}
+                    color={"#2F3133"}
                     className="cursor-pointer"
                     onClick={() => onDelete()}
                 />

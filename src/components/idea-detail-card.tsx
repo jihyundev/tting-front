@@ -22,6 +22,7 @@ import {formatLastEdited} from "@/utils/date-util";
 import {TagItem} from "@/types/idea-create";
 import {useIdeaDetail} from "@/hooks/use-idea-detail";
 import {Card, CardContent, CardFooter} from "@/components/ui/card";
+import {IdeaTagAddButton} from "@/components/idea-tag-add-button";
 
 const FormSchema = z.object({
     ideaDetail: z
@@ -37,7 +38,7 @@ const FormSchema = z.object({
 export const IdeaDetailCard = ({ id }: {
     id: string
 }) => {
-    const { data, isLoading, isError, error } = useIdeaDetail({
+    const { data, isLoading, isError } = useIdeaDetail({
         ideaId: id
     });
 
@@ -107,10 +108,12 @@ export const IdeaDetailCard = ({ id }: {
                                             key={tag.id}
                                             label={tag.name}
                                             color={tag.color}
+                                            size={'M'}
                                             readOnly={false}
                                             onDelete={() => onDeleteTag(tag.id || '')}
                                         />
                                     ))}
+                                    <IdeaTagAddButton />
                                 </div>
                                 <div className="flex gap-2.5">
                                     <Typography variant="caption" className="pt-4">{formatLastEdited(data?.data?.updatedAt || '')}</Typography>
