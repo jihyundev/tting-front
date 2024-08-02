@@ -29,7 +29,18 @@ export const Tag = ({ label, color, size = 'S', onClick, readOnly = true, onDele
             return `px-2 py-3 h-9`
         }
         return `p-1.5 h-7`
-    }
+    };
+
+    const getButtonVariant = () => {
+        if (size === 'S') {
+            return 'button2'
+        }
+        if (size === 'M') {
+            return 'button1'
+        }
+        return 'button2'
+    };
+
     return (
         <div
             className={`flex items-center ${getSizeClass()} text-ellipsis overflow-hidden rounded-full ${TAG_COLOR_MAPPER[color]}`}
@@ -40,7 +51,7 @@ export const Tag = ({ label, color, size = 'S', onClick, readOnly = true, onDele
                 type="button"
                 onClick={onSelectTag}
             >
-                <Typography variant="button2">{label}</Typography>
+                <Typography variant={getButtonVariant()}>{label}</Typography>
             </button>
             {!readOnly && isHovered && (
                 <XIcon
