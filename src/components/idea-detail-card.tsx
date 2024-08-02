@@ -79,19 +79,19 @@ export const IdeaDetailCard = ({ id }: {
 
     return (
         <>
-            <Card className="w-2/3">
+            <Card className="w-2/3 h-2/3">
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)}>
-                        <CardContent className="pt-6">
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="h-full flex flex-col justify-between">
+                        <CardContent className="pt-6 h-full">
                             <FormField
                                 control={form.control}
                                 name="ideaDetail"
                                 render={({ field }) => (
-                                    <FormItem>
+                                    <FormItem className="h-full">
                                         <FormControl>
                                             <Textarea
                                                 placeholder="아이디어를 입력해주세요."
-                                                className="resize-none min-h-28"
+                                                className="text-2xl text-gray-600 resize-none h-full min-h-28"
                                                 {...field}
                                             />
                                         </FormControl>
