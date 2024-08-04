@@ -93,10 +93,9 @@ export const IdeaList = () => {
                         {mode === "default" && (
                             <div className="flex gap-3">
                                 <Button
-                                    variant="outline"
                                     onClick={() => router.push("/idea/add")}
                                 >
-                                    아이디어 생성
+                                    아이디어 추가
                                 </Button>
                                 <Button
                                     onClick={() => setMode("select")}
