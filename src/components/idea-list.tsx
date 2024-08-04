@@ -91,11 +91,19 @@ export const IdeaList = () => {
                     <div className="pb-5 flex justify-between">
                         <ListFilter setIsDescending={setQueryIsDescending} />
                         {mode === "default" && (
-                            <Button
-                                onClick={() => setMode("select")}
-                            >
-                                아이디어 선택
-                            </Button>
+                            <div className="flex gap-3">
+                                <Button
+                                    variant="outline"
+                                    onClick={() => router.push("/idea/add")}
+                                >
+                                    아이디어 생성
+                                </Button>
+                                <Button
+                                    onClick={() => setMode("select")}
+                                >
+                                    아이디어 선택
+                                </Button>
+                            </div>
                         )}
                         {mode === "select" && (
                             <div className="flex gap-3">
