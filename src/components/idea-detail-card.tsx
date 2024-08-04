@@ -120,9 +120,11 @@ export const IdeaDetailCard = ({ id }: {
                                             onDelete={() => onDeleteTag(tag.id || '')}
                                         />
                                     ))}
-                                    <IdeaTagAddButton
-                                        onSelectTag={(tag) => setTags([...tags, tag])}
-                                    />
+                                    {tags.length < 5 && (
+                                        <IdeaTagAddButton
+                                            onSelectTag={(tag) => setTags([...tags, tag])}
+                                        />
+                                    )}
                                 </div>
                                 <div className="flex gap-2.5">
                                     <Typography variant="caption" className="pt-4">{formatLastEdited(data?.data?.updatedAt || '')}</Typography>

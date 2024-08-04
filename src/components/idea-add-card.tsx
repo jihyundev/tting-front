@@ -100,9 +100,11 @@ export const IdeaAddCard = () => {
                                         onDelete={() => onDeleteTag(tag.id || '')}
                                     />
                                 ))}
-                                <IdeaTagAddButton
-                                    onSelectTag={(tag) => setTags([...tags, tag])}
-                                />
+                                {tags.length < 5 && (
+                                    <IdeaTagAddButton
+                                        onSelectTag={(tag) => setTags([...tags, tag])}
+                                    />
+                                )}
                             </div>
                             <div className="flex gap-2.5">
                                 {tags.length === 0 && (
