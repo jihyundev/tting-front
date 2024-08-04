@@ -19,7 +19,7 @@ import {Button} from "@/components/ui/button";
 import {useIdeaEdit} from "@/hooks/use-idea-edit";
 import {Typography} from "@/components/typography";
 import {formatLastEdited} from "@/utils/date-util";
-import {TagItem} from "@/types/idea-create";
+import type {TagItem} from "@/types/idea-create";
 import {useIdeaDetail} from "@/hooks/use-idea-detail";
 import {Card, CardContent, CardFooter} from "@/components/ui/card";
 import {IdeaTagAddButton} from "@/components/idea-tag-add-button";
@@ -102,7 +102,7 @@ export const IdeaDetailCard = ({ id }: {
                         </CardContent>
                         <CardFooter>
                             <div className="w-full pt-6 flex justify-between align-center gap-1.5">
-                                <div className="flex gap-1.5">
+                                <div className="flex gap-2.5 flex-wrap justify-start w-2/3">
                                     {tags.map(tag => (
                                         <Tag
                                             key={tag.id}
@@ -113,7 +113,9 @@ export const IdeaDetailCard = ({ id }: {
                                             onDelete={() => onDeleteTag(tag.id || '')}
                                         />
                                     ))}
-                                    <IdeaTagAddButton />
+                                    <IdeaTagAddButton
+                                        onSelectTag={(tag) => setTags([...tags, tag])}
+                                    />
                                 </div>
                                 <div className="flex gap-2.5">
                                     <Typography variant="caption" className="pt-4">{formatLastEdited(data?.data?.updatedAt || '')}</Typography>
