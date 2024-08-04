@@ -37,7 +37,7 @@ export const IdeaTagAddButton = ({ onSelectTag }: {
         setSearchTerm(event.target.value);
     };
 
-    const filteredTags = data?.pages.reduce((acc, page) => {
+    const filteredTags = data?.pages.reduce<TagItem[]>((acc, page) => {
         const filteredData = page.data.data.filter(tag => tag.name.toLowerCase().includes(searchTerm.toLowerCase()));
         return acc.concat(filteredData);
     }, []);
@@ -64,7 +64,7 @@ export const IdeaTagAddButton = ({ onSelectTag }: {
                 <DialogFooter>
                     <div className="flex justify-start items-start flex-wrap gap-3 h-60 overflow-auto">
                         {filteredTags?.map((tag, j) => (
-                            <DialogClose asChild key={tag.id}>
+                            <DialogClose asChild key={`${tag.id} - ${j}`}>
                                 <Tag
                                     size={'M'}
                                     label={tag.name}
