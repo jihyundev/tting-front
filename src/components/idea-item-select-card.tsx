@@ -28,7 +28,7 @@ export const IdeaItemSelectCard = ({idea, onSelect, onUnselect}: {
                 {idea.content}
             </CardHeader>
             <Separator/>
-            <CardFooter className="pt-6 flex align-center gap-1.5">
+            <CardFooter className="pt-6 flex align-center gap-1.5 justify-start items-start flex-wrap">
                 {idea.tags.map(tag => (
                     <Tag key={tag.id} label={tag.name} color={tag.color} />
                 ))}
