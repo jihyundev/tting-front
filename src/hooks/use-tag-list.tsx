@@ -2,9 +2,8 @@ import {useState} from "react";
 import {useInfiniteQuery} from "@tanstack/react-query";
 import {getTags} from "@/services/tag";
 
-export const useTagList = () => {
+export const useTagList = ({ pageSize = 12 } = {}) => {
     const [isDescending, setIsDescending] = useState(true);
-    const [pageSize, setPageSize] = useState(12);
 
     const {
         data,
@@ -38,7 +37,6 @@ export const useTagList = () => {
         fetchNextPage,
         hasNextPage,
         isFetchingNextPage,
-        setPageSize,
         setIsDescending
     }
 }
