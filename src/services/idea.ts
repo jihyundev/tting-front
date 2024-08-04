@@ -69,7 +69,10 @@ export const postIdea = ({ id, content, tags }: {
  * @param content
  * @param tags
  */
-export const postIdeaAdd = ({ content, tags }) => {
+export const postIdeaAdd = ({ content, tags }: {
+    content: string;
+    tags: TagItem[];
+}) => {
     return API.post(`/v1/ideas`, {
         content,
         tags
