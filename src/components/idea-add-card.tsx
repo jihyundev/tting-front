@@ -1,6 +1,7 @@
 'use client'
 
 import {useState} from "react";
+import {useRouter} from "next/navigation";
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useForm} from "react-hook-form"
 import {z} from "zod"
@@ -41,6 +42,7 @@ export const IdeaAddCard = () => {
         }
     });
     const [tags, setTags] = useState<TagItem[]>([]);
+    const router = useRouter();
 
     const { mutate, isPending } = useIdeaAdd();
 
@@ -48,6 +50,10 @@ export const IdeaAddCard = () => {
         mutate({
             content: data.ideaDetail,
             tags
+        }, {
+            onSuccess: () => {
+                router.back();
+            }
         });
     }
 

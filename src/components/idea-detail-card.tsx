@@ -1,6 +1,7 @@
 'use client'
 
 import {useEffect, useState} from "react";
+import {useRouter} from "next/navigation";
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useForm} from "react-hook-form"
 import {z} from "zod"
@@ -51,6 +52,8 @@ export const IdeaDetailCard = ({ id }: {
         }
     });
 
+    const router = useRouter();
+
     const { mutate, isPending } = useIdeaEdit();
 
     useEffect(() => {
@@ -66,6 +69,10 @@ export const IdeaDetailCard = ({ id }: {
             id: id,
             content: data.ideaDetail,
             tags
+        }, {
+            onSuccess: () => {
+                router.back();
+            }
         });
     };
 
