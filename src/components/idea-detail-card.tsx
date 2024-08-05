@@ -126,7 +126,7 @@ export const IdeaDetailCard = ({ id }: {
                                         />
                                     )}
                                 </div>
-                                <div className="flex gap-2.5 w-5/12">
+                                <div className="flex gap-2.5 w-5/12 justify-end">
                                     <Typography variant="caption" className="pt-4">{formatLastEdited(data?.data?.updatedAt || '')}</Typography>
                                     <Button
                                         type="button"
