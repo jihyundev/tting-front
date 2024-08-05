@@ -120,23 +120,25 @@ export const IdeaList = () => {
                         )}
                     </div>
                 </div>
-                {data?.pages?.map((page, pageIndex) => (
-                    <div key={pageIndex} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-1">
-                        {page.data.data.map(idea => (
-                            (mode === "select") ? (
-                                <IdeaItemSelectCard
-                                    key={idea.id}
-                                    idea={idea}
-                                    onSelect={onSelectIdea}
-                                    onUnselect={onUnselectIdea}
-                                />
-                            ) : (
-                                <IdeaItemCard key={idea.id} idea={idea} />
-                            )
+                    <div className="mt-1 columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-5">
+                        {data?.pages?.map((page, pageIndex) => (
+                            <>
+                                {page.data.data.map(idea => (
+                                    (mode === "select") ? (
+                                        <IdeaItemSelectCard
+                                            key={idea.id}
+                                            idea={idea}
+                                            onSelect={onSelectIdea}
+                                            onUnselect={onUnselectIdea}
+                                        />
+                                    ) : (
+                                        <IdeaItemCard key={idea.id} idea={idea} />
+                                    )
+                                ))}
+                                <div ref={ref} key={pageIndex}></div>
+                            </>
                         ))}
-                        <div ref={ref} />
                     </div>
-            ))}
                 {isLoading && (
                     <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-1">
                         <SkeletonCard />

@@ -21,7 +21,7 @@ export const IdeaItemSelectCard = ({idea, onSelect, onUnselect}: {
     }
     return (
         <Card
-            className={`${isSelected && "ring"} flex flex-col justify-end`}
+            className={`${isSelected && "ring"} flex flex-col justify-end inline-block w-full mb-5`}
             onClick={onSelectCard}
         >
             <CardHeader>

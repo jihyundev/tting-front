@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export const IdeaItemCard = ({idea}: { idea: IdeaItem }) => {
     return (
-        <Link href={`/idea/${idea.id}`}>
+        <Link href={`/idea/${idea.id}`} className="inline-block w-full mb-5">
             <Card className="flex flex-col justify-end">
                 <CardHeader>
                     {idea.content}
