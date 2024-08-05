@@ -57,14 +57,17 @@ export const TagIdeaList = ({ tagId = '' }: {
                         )}
                     </div>
                 </div>
-                {data?.pages?.map((page, pageIndex) => (
-                    <div key={pageIndex} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-                        {page.data.data.map(idea => (
-                            <IdeaItemCard key={idea.id} idea={idea} />
+                    <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-5">
+                        {data?.pages?.map((page, pageIndex) => (
+                            <>
+                                {page.data.data.map(idea => (
+                                    <IdeaItemCard key={idea.id} idea={idea} />
+                                ))}
+                                <div ref={ref} key={pageIndex}/>
+                            </>
                         ))}
-                        <div ref={ref} />
                     </div>
-                ))}
+
                 {(!data?.pages?.[0]?.data.count && !isLoading && !isError) && (
                     <div className="mt-40 w-full flex justify-center">
                         <div className="max-w-xl">
