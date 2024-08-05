@@ -7,7 +7,7 @@ export const useSearchIdeas = ({
 }) => {
     const [searchText, setSearchText] = useState("");
     const [isDescending, setIsDescending] = useState(true);
-    const [pageSize, setPageSize] = useState(12);
+    const [pageSize, setPageSize] = useState(36);
 
     const {
         data,
