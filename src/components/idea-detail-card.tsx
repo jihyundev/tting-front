@@ -109,7 +109,7 @@ export const IdeaDetailCard = ({ id }: {
                         </CardContent>
                         <CardFooter>
                             <div className="w-full pt-6 flex justify-between align-center gap-1.5">
-                                <div className="flex gap-2.5 flex-wrap justify-start w-2/3">
+                                <div className="flex gap-2.5 flex-wrap justify-start w-7/12">
                                     {tags.map(tag => (
                                         <Tag
                                             key={tag.id}
@@ -126,8 +126,15 @@ export const IdeaDetailCard = ({ id }: {
                                         />
                                     )}
                                 </div>
-                                <div className="flex gap-2.5">
+                                <div className="flex gap-2.5 w-5/12">
                                     <Typography variant="caption" className="pt-4">{formatLastEdited(data?.data?.updatedAt || '')}</Typography>
+                                    <Button
+                                        type="button"
+                                        onClick={() => router.back()}
+                                        variant="outline"
+                                    >
+                                        돌아가기
+                                    </Button>
                                     <Button
                                         type="submit"
                                         disabled={isPending}
