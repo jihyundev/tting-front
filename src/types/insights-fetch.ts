@@ -17,4 +17,10 @@ type InsightTagCount = {
     color: TagColors
 }
 
-export type { InsightSummary, InsightDailyCount, InsightTagCount }
+type InsightBalance = {
+    data: {key: string, value: number}[];
+    count: number;
+    maxValue: number;
+}
+
+export type { InsightSummary, InsightDailyCount, InsightTagCount, InsightBalance }
