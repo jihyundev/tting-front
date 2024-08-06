@@ -39,7 +39,10 @@ export const InsightDailyCount = () => {
                     />
                 )}
                 {chartData && (
-                    <ChartContainer config={chartConfig}>
+                    <ChartContainer
+                        config={chartConfig}
+                        className="mx-auto max-h-[300px]"
+                    >
                         <AreaChart
                             accessibilityLayer
                             data={chartData}

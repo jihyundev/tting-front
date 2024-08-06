@@ -1,9 +1,10 @@
 'use client'
 
 import {useInsightTags} from "@/hooks/use-insight-tags";
-import {Card, CardHeader, CardContent, CardTitle, CardDescription} from "@/components/ui/card";
+import {Card, CardHeader, CardContent, CardTitle, CardDescription, CardFooter} from "@/components/ui/card";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { BarChart, YAxis, XAxis, Bar } from "recharts"
+import {Typography} from "@/components/typography";
 
 export const InsightTagStatus = () => {
     const { chartData, isLoading, isError } = useInsightTags();
@@ -48,6 +49,11 @@ export const InsightTagStatus = () => {
                     </BarChart>
                 </ChartContainer>
             </CardContent>
+            <CardFooter>
+                <Typography variant="caption" className="w-full text-center">
+                    아이디어가 가장 많은 상위 5개 태그
+                </Typography>
+            </CardFooter>
         </Card>
     )
 }
