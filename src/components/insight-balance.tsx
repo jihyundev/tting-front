@@ -5,6 +5,8 @@ import {Card, CardHeader, CardContent, CardTitle, CardDescription, CardFooter} f
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar } from "recharts"
 import {Typography} from "@/components/typography";
+import {Skeleton} from "@/components/ui/skeleton";
+import {CommonError} from "@/components/common-error";
 
 export const InsightBalance = () => {
     const { chartData, isLoading, isError, error } = useInsightBalance();
@@ -17,29 +19,41 @@ export const InsightBalance = () => {
     }
 
     return (
-        <Card className="w-1/2">
+        <Card className="w-full mb-8">
             <CardHeader>
                 <CardTitle>아이디어 균형</CardTitle>
                 <CardDescription>6가지 영역에 대한 아이디어의 균형을 표시합니다</CardDescription>
             </CardHeader>
             <CardContent>
-                <ChartContainer
-                    config={chartConfig}
-                >
-                    <RadarChart data={chartData}>
-                        <ChartTooltip
-                            cursor={false}
-                            content={<ChartTooltipContent hideLabel />}
-                        />
-                        <PolarGrid className="fill-[--color-balance] opacity-20" />
-                        <PolarAngleAxis dataKey="category" />
-                        <Radar
-                            dataKey="value"
-                            fill="var(--color-balance)"
-                            fillOpacity={0.5}
-                        />
-                    </RadarChart>
-                </ChartContainer>
+                {isLoading && (
+                    <div className="h-80">
+                        <Skeleton className="h-80" />
+                    </div>
+                )}
+                {isError && (
+                    <CommonError
+                        error={error}
+                    />
+                )}
+                {chartData && (
+                    <ChartContainer
+                        config={chartConfig}
+                    >
+                        <RadarChart data={chartData}>
+                            <ChartTooltip
+                                cursor={false}
+                                content={<ChartTooltipContent hideLabel />}
+                            />
+                            <PolarGrid className="fill-[--color-balance] opacity-20" />
+                            <PolarAngleAxis dataKey="category" />
+                            <Radar
+                                dataKey="value"
+                                fill="var(--color-balance)"
+                                fillOpacity={0.5}
+                            />
+                        </RadarChart>
+                    </ChartContainer>
+                )}
             </CardContent>
             <CardFooter>
                 <Typography variant="caption" className="w-full text-center">

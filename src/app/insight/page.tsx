@@ -13,7 +13,7 @@ export default function InsightPage() {
             <div className="flex flex-col gap-5 max-w-3xl">
                 <InsightSummary />
                 <InsightDailyCount />
-                <div className="flex gap-5">
+                <div className="md:flex gap-5">
                     <InsightTagStatus />
                     <InsightBalance />
                 </div>
