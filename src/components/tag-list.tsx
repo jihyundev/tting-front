@@ -8,6 +8,7 @@ import {useTagList} from "@/hooks/use-tag-list";
 import {ListFilter} from "@/components/list-filter";
 import {TagAddButton} from "@/components/tag-add-button";
 import {SkeletonCard} from "@/components/skeleton-card";
+import {CommonError} from "@/components/common-error";
 
 export const TagList = () => {
     const {
@@ -33,18 +34,7 @@ export const TagList = () => {
 
     if (isError) {
         return (
-            <div className="w-full h-full flex justify-center align-center">
-                <Image
-                    src="/brand/error-logo.svg"
-                    alt="error-logo"
-                    width={280}
-                    height={200}
-                />
-                <div>
-                    <div>에러가 발생했어요.</div>
-                    <div>에러: {error ? error.message : '알 수 없음'}</div>
-                </div>
-            </div>
+            <CommonError error={error} />
         )
     }
 

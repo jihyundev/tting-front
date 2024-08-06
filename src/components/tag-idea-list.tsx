@@ -1,6 +1,6 @@
 'use client'
-import Image from "next/image";
-import {useEffect, useState} from "react";
+
+import {useEffect} from "react";
 import {useInView} from "react-intersection-observer";
 import {useSearchIdeas} from "@/hooks/use-search-ideas";
 import {useTagDetail} from "@/hooks/use-tag-detail";
@@ -10,6 +10,7 @@ import {Typography} from "@/components/typography";
 import {TagEditButton} from "@/components/tag-edit-button";
 import {SkeletonCard} from "@/components/skeleton-card";
 import {IntroCard} from "@/components/intro-card";
+import {CommonError} from "@/components/common-error";
 
 export const TagIdeaList = ({ tagId = '' }: {
     tagId: string
@@ -88,15 +89,7 @@ export const TagIdeaList = ({ tagId = '' }: {
                     </div>
                 )}
                 {isError && (
-                    <div className="w-full h-full flex justify-center align-center">
-                        <Image
-                            src="/brand/error-logo.svg"
-                            alt="error-logo"
-                            width={280}
-                            height={200}
-                        />
-                        에러가 발생했어요. 에러: {error ? error.message : '알 수 없음'}
-                    </div>
+                    <CommonError error={error} />
                 )}
             </div>
         </>
