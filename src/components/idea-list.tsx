@@ -1,5 +1,4 @@
 'use client'
-import Image from "next/image";
 import {useRouter} from 'next/navigation'
 import {useEffect, useState} from "react";
 import {useInView} from "react-intersection-observer";
@@ -13,6 +12,7 @@ import {IdeaItemSelectCard} from "@/components/idea-item-select-card";
 import {IdeaItem} from "@/types/idea-fetch";
 import {IdeasDeleteButton} from "@/components/ideas-delete-button";
 import {SkeletonCard} from "@/components/skeleton-card";
+import {CommonError} from "@/components/common-error";
 
 export const IdeaList = () => {
     const [searchText, setSearchText] = useState("");
@@ -152,15 +152,7 @@ export const IdeaList = () => {
                     </div>
                 )}
                 {isError && (
-                    <div className="w-full h-full flex justify-center align-center">
-                        <Image
-                            src="/brand/error-logo.svg"
-                            alt="error-logo"
-                            width={280}
-                            height={200}
-                        />
-                        에러가 발생했어요. 에러: {error ? error.message : '알 수 없음'}
-                    </div>
+                    <CommonError error={error} />
                 )}
             </div>
         </>
