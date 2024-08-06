@@ -13,7 +13,7 @@ const COLOR_MAP = {
 }
 
 export const useInsightTags = () => {
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ['getInsightTagCount'],
         queryFn: getInsightTagCount
     });
@@ -30,6 +30,7 @@ export const useInsightTags = () => {
         data,
         chartData,
         isLoading,
-        isError
+        isError,
+        error
     }
 }
