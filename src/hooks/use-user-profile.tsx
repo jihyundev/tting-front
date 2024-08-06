@@ -7,8 +7,11 @@ export const useUserProfile = () => {
         queryFn: getMe
     });
 
+    const name = data?.data?.name;
+
     return {
         data,
+        name,
         isLoading,
         isError,
         error
