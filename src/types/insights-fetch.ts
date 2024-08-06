@@ -4,5 +4,9 @@ type InsightSummary = {
     recentUsageIndex: number;
 }
 
+type InsightDailyCount = {
+    count: number;
+    data: {key: string, value: number}[];
+}
 
-export type { InsightSummary }
+export type { InsightSummary, InsightDailyCount }
