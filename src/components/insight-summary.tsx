@@ -3,7 +3,11 @@ import {useInsightSummary} from "@/hooks/use-insight-summary";
 import {Card, CardHeader, CardContent, CardFooter, CardTitle, CardDescription} from "@/components/ui/card";
 import {Typography} from "@/components/typography";
 
-const SummaryCard = ({title, description, value}) => {
+const SummaryCard = ({title, description, value}: {
+    title: string,
+    description: string,
+    value: number
+}) => {
     return (
         <Card className="w-1/3">
             <CardHeader>

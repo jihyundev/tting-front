@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export const CommonError = (error) => {
+export const CommonError = ({ error }: { error: Error | null }) => {
     return (
         <div className="w-full h-full flex justify-center align-center">
             <Image
