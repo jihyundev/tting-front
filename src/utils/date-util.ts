@@ -19,3 +19,8 @@ export const formatLastEdited = (lastEdited: string) => {
         return "방금 전 수정";
     }
 }
+
+export const formatChartAxisDate = (date: string) => {
+    if (!date) return "";
+    return dayjs(date).format("MM월 DD일");
+}
