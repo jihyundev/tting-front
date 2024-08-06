@@ -1,3 +1,5 @@
+import {TagColors} from "@/types/tag-colors";
+
 type InsightSummary = {
     totalIdeas: number;
     recentIdeasAdded: number;
@@ -9,4 +11,10 @@ type InsightDailyCount = {
     data: {key: string, value: number}[];
 }
 
-export type { InsightSummary, InsightDailyCount }
+type InsightTagCount = {
+    key: string;
+    value: number;
+    color: TagColors
+}
+
+export type { InsightSummary, InsightDailyCount, InsightTagCount }

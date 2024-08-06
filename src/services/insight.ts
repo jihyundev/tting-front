@@ -1,6 +1,6 @@
 import {AxiosResponse} from "axios";
 import { API } from "@/lib/axios";
-import {InsightSummary, InsightDailyCount} from "@/types/insights-fetch";
+import {InsightSummary, InsightDailyCount, InsightTagCount} from "@/types/insights-fetch";
 
 /**
  * 아이디어 통계 요약 정보 요청
@@ -14,4 +14,11 @@ export const getInsightSummary = (): Promise<AxiosResponse<InsightSummary>> => {
  */
 export const getInsightDailyCount = (): Promise<AxiosResponse<InsightDailyCount>> => {
     return API.get('/v1/insights/daily-count');
+}
+
+/**
+ * 태그별 아이디어 수 조회 요청
+ */
+export const getInsightTagCount = (): Promise<AxiosResponse<{data: InsightTagCount[], count: number}>> => {
+    return API.get('/v1/insights/tags');
 }
