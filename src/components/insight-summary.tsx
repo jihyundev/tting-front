@@ -10,15 +10,20 @@ const SummaryCard = ({title, description, value}: {
 }) => {
     return (
         <Card className="w-1/3">
-            <CardHeader>
+            <CardHeader className="pb-3">
                 <CardTitle>{title}</CardTitle>
-                <CardDescription>{description}</CardDescription>
+                <CardDescription className="hidden">{description}</CardDescription>
             </CardHeader>
             <CardContent>
                 <Typography variant="header3">
                     {value}
                 </Typography>
             </CardContent>
+            <CardFooter>
+                <Typography variant="caption">
+                    {description}
+                </Typography>
+            </CardFooter>
         </Card>
     )
 };
