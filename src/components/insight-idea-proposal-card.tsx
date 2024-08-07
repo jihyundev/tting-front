@@ -14,7 +14,12 @@ export const InsightIdeaProposalCard = ({ proposal }: {
     const {reject} = useInsightProposalReject();
     const onReject = () => {
         reject({proposalId: proposal.id})
-    }
+    };
+
+    const onAccept = () => {
+        sessionStorage.setItem("selectedProposal", JSON.stringify(proposal.content));
+        router.push("/idea/add?prefill=true")
+    };
 
     return (
         <Card>
@@ -29,7 +34,7 @@ export const InsightIdeaProposalCard = ({ proposal }: {
             </CardContent>
             <CardFooter className="flex gap-3">
                 <Button variant="outline" onClick={onReject}>괜찮아요</Button>
-                <Button onClick={() => router.push("/idea/add")}>아이디어 추가</Button>
+                <Button onClick={onAccept}>아이디어 추가</Button>
             </CardFooter>
         </Card>
     )
