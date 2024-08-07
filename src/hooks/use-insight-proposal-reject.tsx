@@ -3,7 +3,7 @@ import {postRejectIdeaProposal} from "@/services/insight";
 
 export const useInsightProposalReject = () => {
     const queryClient = useQueryClient();
-    const {mutate, isLoading, isError, error} = useMutation({
+    const {mutate, isError, error} = useMutation({
         mutationKey: ['rejectIdeaProposal'],
         mutationFn: ({proposalId}: {
             proposalId: string;
@@ -15,7 +15,6 @@ export const useInsightProposalReject = () => {
 
     return {
         reject: mutate,
-        isLoading,
         isError,
         error
     }
