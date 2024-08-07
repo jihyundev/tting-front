@@ -1,6 +1,6 @@
 'use client'
 
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {useRouter} from "next/navigation";
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useForm} from "react-hook-form"
@@ -22,6 +22,7 @@ import {Typography} from "@/components/typography";
 import type {TagItem} from "@/types/idea-create";
 import {Card, CardContent, CardFooter} from "@/components/ui/card";
 import {IdeaTagAddButton} from "@/components/idea-tag-add-button";
+import {useSearchParams} from "next/navigation";
 
 const FormSchema = z.object({
     ideaDetail: z
@@ -35,6 +36,7 @@ const FormSchema = z.object({
 });
 
 export const IdeaAddCard = () => {
+    const searchParams = useSearchParams();
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -45,6 +47,19 @@ export const IdeaAddCard = () => {
     const router = useRouter();
 
     const { mutate, isPending } = useIdeaAdd();
+
+    // 미리 아이디어 선택한 채로 진입하는 경우
+    useEffect(() => {
+        const isPrefill = searchParams.get('prefill') === "true"
+        if (isPrefill) {
+            // sessionStorage 에 저장된 selectedProposal 데이터를 불러온다.
+            const selectedProposalString = sessionStorage.getItem("selectedProposal")
+            if (selectedProposalString) {
+                const selectedProposal = JSON.parse(selectedProposalString)
+                form.setValue('ideaDetail', selectedProposal || '')
+            }
+        }
+    }, [form, searchParams])
 
     const onSubmit = (data: z.infer<typeof FormSchema>) => {
         mutate({
