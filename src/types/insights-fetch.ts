@@ -1,4 +1,5 @@
 import {TagColors} from "@/types/tag-colors";
+import type {TagItem} from "@/types/idea-create";
 
 type InsightSummary = {
     totalIdeas: number;
@@ -23,4 +24,14 @@ type InsightBalance = {
     maxValue: number;
 }
 
-export type { InsightSummary, InsightDailyCount, InsightTagCount, InsightBalance }
+type InsightIdeaProposal = {
+    id: string;
+    userId: string;
+    persona: string;
+    content: string;
+    balanceType: string;
+    tags: TagItem[];
+    createdAt: string;
+}
+
+export type { InsightSummary, InsightDailyCount, InsightTagCount, InsightBalance, InsightIdeaProposal }
