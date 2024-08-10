@@ -45,6 +45,7 @@ export const UserMenu = () => {
         mutate({
             text: withdrawalContent
         });
+        onSignOut();
         setIsDialogOpen(false);
     }
 
