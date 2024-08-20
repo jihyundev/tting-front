@@ -48,3 +48,18 @@ export const deleteUser = async ({ text }: {
         }
     });
 }
+
+/**
+ * 고객 제안 등록 요청
+ * @param title
+ * @param content
+ */
+export const postSuggestion = async ({ title, content }: {
+    title: string;
+    content: string;
+}): Promise<AxiosResponse> => {
+    return API.post('/v1/users/suggestions', {
+        title,
+        text: content,
+    })
+}

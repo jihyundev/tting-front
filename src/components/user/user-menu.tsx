@@ -20,22 +20,29 @@ import {
     DialogFooter,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import {useState} from "react";
 import {Button} from "@/components/ui/button";
 import {useUserWithdrawal} from "@/hooks/use-user-withdrawal";
 import {Typography} from "@/components/typography";
+import {Label} from "@/components/ui/label";
+import {useUserSuggestion} from "@/hooks/use-user-suggestion";
 
 export const UserMenu = () => {
     const router = useRouter();
     const {data: session} = useSession();
     const {onSignOut} = useLogout();
 
-    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isWithdrawDialogOpen, setIsWithdrawDialogOpen] = useState(false);
     const [withdrawalContent, setWithdrawalContent] = useState('');
     const {mutate, isPending, isSuccess} = useUserWithdrawal();
+
+    const [isSuggestionDialogOpen, setIsSuggestionDialogOpen] = useState(false);
+    const [suggestionTitle, setSuggestionTitle] = useState('');
+    const [suggestionContent, setSuggestionContent] = useState('');
+    const {mutate: mutateSuggestion, isPending: isSuggestionPending} = useUserSuggestion();
 
     const navigateToLogin = () => {
         router.push('/login')
@@ -44,9 +51,23 @@ export const UserMenu = () => {
     const onWithdrawal = () => {
         mutate({
             text: withdrawalContent
+        }, {
+            onSuccess: () => {
+                onSignOut();
+                setIsWithdrawDialogOpen(false);
+            }
         });
-        onSignOut();
-        setIsDialogOpen(false);
+    }
+
+    const onSuggestion = () => {
+        mutateSuggestion({
+            title: suggestionTitle,
+            content: suggestionContent
+        }, {
+            onSuccess: () => {
+                setIsSuggestionDialogOpen(false);
+            }
+        });
     }
 
     if (session?.user) {
@@ -70,15 +91,15 @@ export const UserMenu = () => {
                         <DropdownMenuLabel>무엇을 도와드릴까요?</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>프로필 수정</DropdownMenuItem>
-                        <DropdownMenuItem>고객 제안</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setIsSuggestionDialogOpen(true)}>고객 제안</DropdownMenuItem>
                         <DropdownMenuItem>구독 플랜</DropdownMenuItem>
                         <DropdownMenuItem>개발 노트</DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={() => setIsDialogOpen(true)}>계정 탈퇴</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setIsWithdrawDialogOpen(true)}>계정 탈퇴</DropdownMenuItem>
                         <DropdownMenuItem onClick={onSignOut}>로그아웃</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
-                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <Dialog open={isWithdrawDialogOpen} onOpenChange={setIsWithdrawDialogOpen}>
                     <DialogContent>
                         <DialogHeader>
                             <DialogTitle>계정 탈퇴</DialogTitle>
@@ -99,7 +120,7 @@ export const UserMenu = () => {
                             남겨주신 내용을 반영하여 더 나은 ‘띵’이 되기 위해 노력하겠습니다. <br/> 그동안 ‘띵’ 서비스를 사용해주셔서 감사합니다.
                         </Typography>
                         <DialogFooter>
-                            <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>닫기</Button>
+                            <Button type="button" variant="outline" onClick={() => setIsWithdrawDialogOpen(false)}>닫기</Button>
                             <Button type="submit" onClick={onWithdrawal} disabled={isPending}>
                                 {isPending ? (
                                     <>
@@ -107,6 +128,50 @@ export const UserMenu = () => {
                                         계정 탈퇴
                                     </>
                                 ) : "계정 탈퇴"}
+                            </Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
+                <Dialog open={isSuggestionDialogOpen} onOpenChange={setIsSuggestionDialogOpen}>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>고객 제안</DialogTitle>
+                            <DialogDescription>
+                                서비스 개선이 필요한 사항이나 아이디어가 있다면 보내주세요.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="grid gap-4 py-4">
+                            <div className="grid grid-cols-8 items-center gap-4">
+                                <Label htmlFor="title" className="text-right">
+                                    제목
+                                </Label>
+                                <Input
+                                    id="name"
+                                    className="col-span-7"
+                                    onChange={(e) => setSuggestionTitle(e.target.value)}
+                                />
+                            </div>
+                            <div className="grid grid-cols-8 items-center gap-4">
+                                <Label htmlFor="content" className="text-right">
+                                    내용
+                                </Label>
+                                <Textarea
+                                    id="content"
+                                    className="col-span-7"
+                                    onChange={(e) => setSuggestionContent(e.target.value)}
+                                    />
+
+                            </div>
+                        </div>
+                        <DialogFooter>
+                            <Button type="button" variant="outline" onClick={() => setIsSuggestionDialogOpen(false)}>닫기</Button>
+                            <Button type="submit" onClick={onSuggestion} disabled={isSuggestionPending}>
+                                {isSuggestionPending ? (
+                                    <>
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        제안하기
+                                    </>
+                                ) : "제안하기"}
                             </Button>
                         </DialogFooter>
                     </DialogContent>
