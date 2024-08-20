@@ -1,6 +1,6 @@
 import {auth} from "@/auth";
 import {IntroCard} from "@/components/intro-card";
-import {IdeaList} from "@/components/idea-list";
+import {IdeaList} from "@/components/idea/idea-list";
 
 export default async function Page() {
     const session = await auth();

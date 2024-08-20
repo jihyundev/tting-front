@@ -15,13 +15,13 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import {Textarea} from "@/components/ui/textarea";
-import {Tag} from "@/components/tag";
+import {Tag} from "@/components/tag/tag";
 import {Button} from "@/components/ui/button";
 import {useIdeaAdd} from "@/hooks/use-idea-add";
 import {Typography} from "@/components/typography";
 import type {TagItem} from "@/types/idea-create";
 import {Card, CardContent, CardFooter} from "@/components/ui/card";
-import {IdeaTagAddButton} from "@/components/idea-tag-add-button";
+import {IdeaTagAddButton} from "@/components/idea/idea-tag-add-button";
 import {useSearchParams} from "next/navigation";
 
 const FormSchema = z.object({

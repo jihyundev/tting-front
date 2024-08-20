@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
-import {TagColorPicker} from "@/components/tag-color-picker";
+import {TagColorPicker} from "@/components/tag/tag-color-picker";
 import {TagColors} from "@/types/tag-colors";
 import {Tag} from "@/types/tag-fetch";
 import {useTagEdit} from "@/hooks/use-tag-edit";

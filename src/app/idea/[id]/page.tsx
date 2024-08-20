@@ -1,4 +1,4 @@
-import {IdeaDetailCard} from "@/components/idea-detail-card";
+import {IdeaDetailCard} from "@/components/idea/idea-detail-card";
 
 export default function IdeaDetailPage({ params }: {
     params: { id: string }

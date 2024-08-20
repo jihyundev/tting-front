@@ -19,7 +19,7 @@ import { Label } from "@/components/ui/label";
 import { useIdeaGenerate } from "@/hooks/use-idea-generate"
 import { Typography } from "@/components/typography";
 import { LoadingIdeaCreate } from "@/components/loading-idea-create";
-import { IdeaSaveCard } from "@/components/idea-save-card";
+import { IdeaSaveCard } from "@/components/idea/idea-save-card";
 import {useEffect, useState} from "react";
 import {IdeaCreationItem} from "@/types/idea-create";
 import {LogoExclude} from "@/components/icons";

@@ -1,10 +1,10 @@
 import {Card} from "@/components/ui/card";
-import {InsightSummary} from "@/components/insight-summary";
-import {InsightDailyCount} from "@/components/insight-daily-count";
-import {InsightTagStatus} from "@/components/insight-tag-status";
-import {InsightBalance} from "@/components/insight-balance";
-import {InsightTitle} from "@/components/insight-title";
-import {InsightIdeaProposals} from "@/components/insight-idea-proposals";
+import {InsightSummary} from "@/components/insight/insight-summary";
+import {InsightDailyCount} from "@/components/insight/insight-daily-count";
+import {InsightTagStatus} from "@/components/insight/insight-tag-status";
+import {InsightBalance} from "@/components/insight/insight-balance";
+import {InsightTitle} from "@/components/insight/insight-title";
+import {InsightIdeaProposals} from "@/components/insight/insight-idea-proposals";
 
 export default function InsightPage() {
     return (

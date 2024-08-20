@@ -1,6 +1,6 @@
 import {Suspense} from "react";
 import {Typography} from "@/components/typography";
-import {IdeaCreateForm} from "@/components/idea-create-form";
+import {IdeaCreateForm} from "@/components/idea/idea-create-form";
 import {LoaderCircleIcon} from "lucide-react";
 
 const CreateFormFallback = () => {

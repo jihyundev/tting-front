@@ -1,6 +1,6 @@
 import {Logo} from "@/components/icons";
 import {Typography} from "@/components/typography";
-import {KakaoLoginButton} from "@/components/kakao-login-button";
+import {KakaoLoginButton} from "@/components/user/kakao-login-button";
 
 export default function LoginPage() {
     return (

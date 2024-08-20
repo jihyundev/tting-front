@@ -2,7 +2,7 @@
 
 import {Card, CardFooter, CardHeader} from "@/components/ui/card";
 import {Typography} from "@/components/typography";
-import {Tag} from "@/components/tag";
+import {Tag} from "@/components/tag/tag";
 import {Separator} from "@/components/ui/separator";
 import {Button} from "@/components/ui/button";
 import {useGeneratedIdeaAdd} from "@/hooks/use-generated-idea-add";

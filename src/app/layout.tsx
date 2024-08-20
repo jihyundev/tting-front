@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { NavSidebar } from "@/components/nav-sidebar";
-import { UserMenu } from "@/components/user-menu";
+import { UserMenu } from "@/components/user/user-menu";
 import { AuthSession } from "@/components/auth-session";
 import { ReactQueryClientProvider } from "@/components/react-query-client-provider";
 import { NavMobile } from "@/components/nav-mobile";

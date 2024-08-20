@@ -15,7 +15,7 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import {Textarea} from "@/components/ui/textarea";
-import {Tag} from "@/components/tag";
+import {Tag} from "@/components/tag/tag";
 import {Button} from "@/components/ui/button";
 import {useIdeaEdit} from "@/hooks/use-idea-edit";
 import {Typography} from "@/components/typography";
@@ -23,7 +23,7 @@ import {formatLastEdited} from "@/utils/date-util";
 import type {TagItem} from "@/types/idea-create";
 import {useIdeaDetail} from "@/hooks/use-idea-detail";
 import {Card, CardContent, CardFooter} from "@/components/ui/card";
-import {IdeaTagAddButton} from "@/components/idea-tag-add-button";
+import {IdeaTagAddButton} from "@/components/idea/idea-tag-add-button";
 
 const FormSchema = z.object({
     ideaDetail: z

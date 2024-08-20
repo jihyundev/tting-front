@@ -3,14 +3,14 @@ import {useRouter} from 'next/navigation'
 import {useEffect, useState} from "react";
 import {useInView} from "react-intersection-observer";
 import {useSearchIdeas} from "@/hooks/use-search-ideas";
-import {IdeaItemCard} from "@/components/idea-item-card";
+import {IdeaItemCard} from "@/components/idea/idea-item-card";
 import {IntroCard} from "@/components/intro-card";
 import {SearchBar} from "@/components/search-bar";
 import {ListFilter} from "@/components/list-filter";
 import {Button} from "@/components/ui/button";
-import {IdeaItemSelectCard} from "@/components/idea-item-select-card";
+import {IdeaItemSelectCard} from "@/components/idea/idea-item-select-card";
 import {IdeaItem} from "@/types/idea-fetch";
-import {IdeasDeleteButton} from "@/components/ideas-delete-button";
+import {IdeasDeleteButton} from "@/components/idea/ideas-delete-button";
 import {SkeletonCard} from "@/components/skeleton-card";
 import {CommonError} from "@/components/common-error";
 

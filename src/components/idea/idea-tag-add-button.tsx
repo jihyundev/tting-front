@@ -12,7 +12,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import {Input} from "@/components/ui/input";
-import {Tag} from "@/components/tag";
+import {Tag} from "@/components/tag/tag";
 import {useTagList} from "@/hooks/use-tag-list";
 import {Separator} from "@/components/ui/separator";
 import type {TagItem} from "@/types/idea-create";

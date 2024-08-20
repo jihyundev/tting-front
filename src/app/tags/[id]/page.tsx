@@ -1,4 +1,4 @@
-import {TagIdeaList} from "@/components/tag-idea-list";
+import {TagIdeaList} from "@/components/tag/tag-idea-list";
 
 export default function TagDetailPage({ params }: {
     params: { id: string }

@@ -1,4 +1,4 @@
-import {IdeaAddCard} from "@/components/idea-add-card";
+import {IdeaAddCard} from "@/components/idea/idea-add-card";
 import {LoaderCircleIcon} from "lucide-react";
 import {Suspense} from "react";
 

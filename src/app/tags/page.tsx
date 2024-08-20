@@ -1,4 +1,4 @@
-import {TagList} from "@/components/tag-list";
+import {TagList} from "@/components/tag/tag-list";
 import {Typography} from "@/components/typography";
 
 export default function TagsPage() {

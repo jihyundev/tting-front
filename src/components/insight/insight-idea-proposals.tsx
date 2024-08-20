@@ -1,7 +1,7 @@
 'use client'
 
 import {useInsightProposals} from "@/hooks/use-insight-proposals";
-import {InsightIdeaProposalCard} from "@/components/insight-idea-proposal-card";
+import {InsightIdeaProposalCard} from "@/components/insight/insight-idea-proposal-card";
 import {Skeleton} from "@/components/ui/skeleton";
 import {CommonError} from "@/components/common-error";
 import {Typography} from "@/components/typography";

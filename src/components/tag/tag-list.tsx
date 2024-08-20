@@ -1,12 +1,11 @@
 'use client'
 
 import {useEffect} from "react";
-import Image from "next/image";
 import {useInView} from "react-intersection-observer";
-import {TagItemCard} from "@/components/tag-item-card";
+import {TagItemCard} from "@/components/tag/tag-item-card";
 import {useTagList} from "@/hooks/use-tag-list";
 import {ListFilter} from "@/components/list-filter";
-import {TagAddButton} from "@/components/tag-add-button";
+import {TagAddButton} from "@/components/tag/tag-add-button";
 import {SkeletonCard} from "@/components/skeleton-card";
 import {CommonError} from "@/components/common-error";
 
