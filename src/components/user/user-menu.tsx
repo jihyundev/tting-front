@@ -61,10 +61,10 @@ export const UserMenu = () => {
                     >
                         <DropdownMenuLabel>무엇을 도와드릴까요?</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>프로필 수정</DropdownMenuItem>
+                        {/*<DropdownMenuItem>프로필 수정</DropdownMenuItem>*/}
                         <DropdownMenuItem onClick={() => setIsSuggestionDialogOpen(true)}>고객 제안</DropdownMenuItem>
-                        <DropdownMenuItem>구독 플랜</DropdownMenuItem>
-                        <DropdownMenuItem>개발 노트</DropdownMenuItem>
+                        {/*<DropdownMenuItem>구독 플랜</DropdownMenuItem>*/}
+                        {/*<DropdownMenuItem>개발 노트</DropdownMenuItem>*/}
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={() => setIsWithdrawDialogOpen(true)}>계정 탈퇴</DropdownMenuItem>
                         <DropdownMenuItem onClick={onSignOut}>로그아웃</DropdownMenuItem>
