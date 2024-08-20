@@ -80,7 +80,7 @@ export const UserMenu = () => {
                             </DialogDescription>
                         </DialogHeader>
                             <div className="w-full">
-                                <Input
+                                <Textarea
                                     id="content"
                                     defaultValue=""
                                     maxLength={1000}
