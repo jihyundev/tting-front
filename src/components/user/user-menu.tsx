@@ -23,51 +23,22 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import {useState} from "react";
 import {Button} from "@/components/ui/button";
-import {useUserWithdrawal} from "@/hooks/use-user-withdrawal";
 import {Typography} from "@/components/typography";
 import {Label} from "@/components/ui/label";
-import {useUserSuggestion} from "@/hooks/use-user-suggestion";
+import {useWithdrawDialog} from "@/hooks/use-withdraw-dialog";
+import {useSuggestionDialog} from "@/hooks/use-suggestion-dialog";
 
 export const UserMenu = () => {
     const router = useRouter();
     const {data: session} = useSession();
     const {onSignOut} = useLogout();
 
-    const [isWithdrawDialogOpen, setIsWithdrawDialogOpen] = useState(false);
-    const [withdrawalContent, setWithdrawalContent] = useState('');
-    const {mutate, isPending, isSuccess} = useUserWithdrawal();
-
-    const [isSuggestionDialogOpen, setIsSuggestionDialogOpen] = useState(false);
-    const [suggestionTitle, setSuggestionTitle] = useState('');
-    const [suggestionContent, setSuggestionContent] = useState('');
-    const {mutate: mutateSuggestion, isPending: isSuggestionPending} = useUserSuggestion();
+    const { isWithdrawDialogOpen, setIsWithdrawDialogOpen, setWithdrawalContent, onWithdrawal, isPending } = useWithdrawDialog();
+    const { isSuggestionDialogOpen, setIsSuggestionDialogOpen, setSuggestionTitle, setSuggestionContent, onSuggestion, isSuggestionPending } = useSuggestionDialog();
 
     const navigateToLogin = () => {
         router.push('/login')
-    }
-
-    const onWithdrawal = () => {
-        mutate({
-            text: withdrawalContent
-        }, {
-            onSuccess: () => {
-                onSignOut();
-                setIsWithdrawDialogOpen(false);
-            }
-        });
-    }
-
-    const onSuggestion = () => {
-        mutateSuggestion({
-            title: suggestionTitle,
-            content: suggestionContent
-        }, {
-            onSuccess: () => {
-                setIsSuggestionDialogOpen(false);
-            }
-        });
     }
 
     if (session?.user) {
