@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/chart";
 import {Skeleton} from "@/components/ui/skeleton";
 import {CommonError} from "@/components/common-error";
+import {Typography} from "@/components/typography";
 
 const chartConfig = {
     count: {
@@ -24,7 +25,7 @@ export const InsightDailyCount = () => {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>아이디어 생성 현황</CardTitle>
+                <Typography variant='header5'>아이디어 생성 현황</Typography>
                 <CardDescription>최근 30일 간의 아이디어 생성 현황입니다</CardDescription>
             </CardHeader>
             <CardContent>

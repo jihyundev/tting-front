@@ -21,7 +21,7 @@ export const InsightBalance = () => {
     return (
         <Card className="w-full mb-8">
             <CardHeader>
-                <CardTitle>아이디어 균형</CardTitle>
+                <Typography variant='header5'>아이디어 균형</Typography>
                 <CardDescription>6가지 영역에 대한 아이디어의 균형을 표시합니다</CardDescription>
             </CardHeader>
             <CardContent>

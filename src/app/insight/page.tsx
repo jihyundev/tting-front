@@ -10,7 +10,7 @@ export default function InsightPage() {
     return (
         <div className="mb-7">
             <InsightTitle />
-            <div className="flex gap-7">
+            <div className="md:flex gap-7">
                 <Card className="flex flex-col gap-5 max-w-3xl pt-7 px-9">
                     <InsightSummary />
                     <InsightDailyCount />

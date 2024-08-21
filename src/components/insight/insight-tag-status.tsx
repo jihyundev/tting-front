@@ -1,7 +1,7 @@
 'use client'
 
 import {useInsightTags} from "@/hooks/use-insight-tags";
-import {Card, CardHeader, CardContent, CardTitle, CardDescription, CardFooter} from "@/components/ui/card";
+import {Card, CardHeader, CardContent, CardDescription, CardFooter} from "@/components/ui/card";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { BarChart, YAxis, XAxis, Bar } from "recharts"
 import {Typography} from "@/components/typography";
@@ -14,7 +14,7 @@ export const InsightTagStatus = () => {
     return (
         <Card className="w-full mb-8">
             <CardHeader>
-                <CardTitle>태그 현황</CardTitle>
+                <Typography variant='header5'>태그 현황</Typography>
                 <CardDescription>태그별 아이디어 수를 표시합니다</CardDescription>
             </CardHeader>
             <CardContent>

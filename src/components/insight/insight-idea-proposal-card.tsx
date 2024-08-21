@@ -22,9 +22,9 @@ export const InsightIdeaProposalCard = ({ proposal }: {
     };
 
     return (
-        <Card>
+        <Card className='mb-4'>
             <CardHeader>
-                <CardTitle>{proposal.persona}</CardTitle>
+                <Typography variant='header5'>{proposal.persona}</Typography>
                 <CardDescription className="hidden">{proposal.id}</CardDescription>
             </CardHeader>
             <CardContent>

@@ -11,7 +11,7 @@ const SummaryCard = ({title, description, value}: {
     return (
         <Card className="w-1/3">
             <CardHeader className="pb-3">
-                <CardTitle>{title}</CardTitle>
+                <Typography variant='header5'>{title}</Typography>
                 <CardDescription className="hidden">{description}</CardDescription>
             </CardHeader>
             <CardContent>

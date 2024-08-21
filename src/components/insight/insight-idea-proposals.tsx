@@ -29,7 +29,7 @@ export const InsightIdeaProposals = () => {
             {isProposalsEmpty && (
                 <div className="flex flex-col justify-center items-center gap-5 mt-32">
                     <LogoExclude />
-                    <Typography variant="subtitle3">
+                    <Typography variant="subtitle3" className="text-center">
                         오늘 제안을 모두 확인했어요! <br />내일 새로운 아이디어를 제안해드릴게요 :)
                     </Typography>
                 </div>
