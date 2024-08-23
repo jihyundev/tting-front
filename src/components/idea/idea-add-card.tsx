@@ -70,7 +70,6 @@ export const IdeaAddCard = () => {
             proposalId: data.proposalId || null,
         }, {
             onSuccess: () => {
-                // TODO: 성공 시 이전 페이지로 이동 후 '아이디어 제안' 새로 호출 필요
                 router.back();
             }
         });
