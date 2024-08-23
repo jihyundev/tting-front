@@ -42,6 +42,7 @@ export const IdeaAddCard = () => {
         resolver: zodResolver(FormSchema),
         defaultValues: {
             ideaDetail: '',
+            proposalId: sessionStorage.getItem("selectedProposalId") || null,
         }
     });
     const [tags, setTags] = useState<TagItem[]>([]);
@@ -55,11 +56,9 @@ export const IdeaAddCard = () => {
         if (isPrefill) {
             // sessionStorage 에 저장된 selectedProposal 데이터를 불러온다.
             const selectedProposalString = sessionStorage.getItem("selectedProposal")
-            const selectedProposalId = sessionStorage.getItem("selectedProposalId");
-            if (selectedProposalString && selectedProposalId) {
+            if (selectedProposalString) {
                 const selectedProposal = JSON.parse(selectedProposalString)
                 form.setValue('ideaDetail', selectedProposal || '')
-                form.setValue("proposalId", selectedProposalId);
             }
         }
     }, [form, searchParams])
