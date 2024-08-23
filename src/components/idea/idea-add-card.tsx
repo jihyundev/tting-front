@@ -42,7 +42,7 @@ export const IdeaAddCard = () => {
         resolver: zodResolver(FormSchema),
         defaultValues: {
             ideaDetail: '',
-            proposalId: sessionStorage.getItem("selectedProposalId") || null,
+            proposalId: sessionStorage.getItem("selectedProposalId") || undefined,
         }
     });
     const [tags, setTags] = useState<TagItem[]>([]);

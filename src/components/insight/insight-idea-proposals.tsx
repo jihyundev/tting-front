@@ -16,7 +16,7 @@ export const InsightIdeaProposals = () => {
     const router = useRouter();
 
     useEffect(() => {
-        queryClient.invalidateQueries(['getInsightProposals']);
+        queryClient.invalidateQueries({ queryKey: ['getInsightProposals'] });
     }, [router]);
     
     const { data, isLoading, isSuccess, isError, error } = useInsightProposals();
