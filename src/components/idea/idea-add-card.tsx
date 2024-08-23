@@ -33,6 +33,7 @@ const FormSchema = z.object({
         .max(300, {
             message: "아이디어가 너무 길어요. 아이디어를 분리해주세요",
         }),
+    proposalId: z.string().optional(),
 });
 
 export const IdeaAddCard = () => {
@@ -54,9 +55,11 @@ export const IdeaAddCard = () => {
         if (isPrefill) {
             // sessionStorage 에 저장된 selectedProposal 데이터를 불러온다.
             const selectedProposalString = sessionStorage.getItem("selectedProposal")
-            if (selectedProposalString) {
+            const selectedProposalId = sessionStorage.getItem("selectedProposalId");
+            if (selectedProposalString && selectedProposalId) {
                 const selectedProposal = JSON.parse(selectedProposalString)
                 form.setValue('ideaDetail', selectedProposal || '')
+                form.setValue("proposalId", selectedProposalId);
             }
         }
     }, [form, searchParams])
@@ -64,9 +67,11 @@ export const IdeaAddCard = () => {
     const onSubmit = (data: z.infer<typeof FormSchema>) => {
         mutate({
             content: data.ideaDetail,
-            tags
+            tags,
+            proposalId: data.proposalId || null,
         }, {
             onSuccess: () => {
+                // TODO: 성공 시 이전 페이지로 이동 후 '아이디어 제안' 새로 호출 필요
                 router.back();
             }
         });

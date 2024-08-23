@@ -18,6 +18,7 @@ export const InsightIdeaProposalCard = ({ proposal }: {
 
     const onAccept = () => {
         sessionStorage.setItem("selectedProposal", JSON.stringify(proposal.content));
+        sessionStorage.setItem("selectedProposalId", proposal.id);
         router.push("/idea/add?prefill=true")
     };
 

@@ -6,10 +6,11 @@ export const useIdeaAdd = () => {
     const queryClient = useQueryClient();
     const { mutate, isPending, isError, isSuccess, data, error } = useMutation({
         mutationKey: ['addIdea'],
-        mutationFn: ({content, tags}: {
+        mutationFn: ({content, tags, proposalId}: {
             content: string;
             tags: TagItem[];
-        }) => postIdeaAdd({content, tags}),
+            proposalId: string | null;
+        }) => postIdeaAdd({content, tags, proposalId}),
         onSuccess: () => queryClient.invalidateQueries({
             queryKey: ['getIdeas']
         })

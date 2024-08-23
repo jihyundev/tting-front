@@ -68,14 +68,17 @@ export const postIdea = ({ id, content, tags }: {
  * 아이디어 추가 요청
  * @param content
  * @param tags
+ * @param proposalId
  */
-export const postIdeaAdd = ({ content, tags }: {
+export const postIdeaAdd = ({ content, tags, proposalId }: {
     content: string;
     tags: TagItem[];
+    proposalId: string | null;
 }) => {
     return API.post(`/v1/ideas`, {
         content,
-        tags
+        tags,
+        proposalId
     });
 }
 
