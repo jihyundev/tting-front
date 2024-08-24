@@ -64,7 +64,8 @@ export const IdeaAddCard = () => {
     const onSubmit = (data: z.infer<typeof FormSchema>) => {
         mutate({
             content: data.ideaDetail,
-            tags
+            tags,
+            proposalId: sessionStorage.getItem("selectedProposalId") || null,
         }, {
             onSuccess: () => {
                 router.back();
