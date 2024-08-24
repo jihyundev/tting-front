@@ -1,8 +1,5 @@
 'use client'
 
-import {useEffect} from "react";
-import {useRouter} from "next/navigation";
-import {useQueryClient} from "@tanstack/react-query";
 import {useInsightProposals} from "@/hooks/use-insight-proposals";
 import {InsightIdeaProposalCard} from "@/components/insight/insight-idea-proposal-card";
 import {Skeleton} from "@/components/ui/skeleton";
@@ -12,13 +9,6 @@ import {LogoExclude} from "@/components/icons";
 import {useUserProfile} from "@/hooks/use-user-profile";
 
 export const InsightIdeaProposals = () => {
-    const queryClient = useQueryClient();
-    const router = useRouter();
-
-    useEffect(() => {
-        queryClient.invalidateQueries({ queryKey: ['getInsightProposals'] });
-    }, [router]);
-    
     const { data, isLoading, isSuccess, isError, error } = useInsightProposals();
     const { name } = useUserProfile();
     const isProposalsEmpty = isSuccess && data && data.data.length === 0;
