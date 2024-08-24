@@ -41,7 +41,6 @@ export const IdeaAddCard = () => {
         resolver: zodResolver(FormSchema),
         defaultValues: {
             ideaDetail: '',
-            proposalId: sessionStorage.getItem("selectedProposalId") || undefined,
         }
     });
     const [tags, setTags] = useState<TagItem[]>([]);
@@ -66,10 +65,9 @@ export const IdeaAddCard = () => {
         mutate({
             content: data.ideaDetail,
             tags,
-            proposalId: data.proposalId || null,
+            proposalId: sessionStorage.getItem("selectedProposalId") || null,
         }, {
             onSuccess: () => {
-                // TODO: 성공 시 이전 페이지로 이동 후 '아이디어 제안' 새로 호출 필요
                 router.back();
             }
         });

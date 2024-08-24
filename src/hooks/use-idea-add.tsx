@@ -11,9 +11,10 @@ export const useIdeaAdd = () => {
             tags: TagItem[];
             proposalId: string | null;
         }) => postIdeaAdd({content, tags, proposalId}),
-        onSuccess: () => queryClient.invalidateQueries({
-            queryKey: ['getIdeas']
-        })
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: ['getIdeas']}),
+            queryClient.invalidateQueries({queryKey: ['getInsightProposals']})
+        }
     });
 
     return {
