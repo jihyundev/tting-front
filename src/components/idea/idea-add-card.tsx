@@ -33,7 +33,6 @@ const FormSchema = z.object({
         .max(300, {
             message: "아이디어가 너무 길어요. 아이디어를 분리해주세요",
         }),
-    proposalId: z.string().optional(),
 });
 
 export const IdeaAddCard = () => {
