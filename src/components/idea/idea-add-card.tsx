@@ -58,6 +58,15 @@ export const IdeaAddCard = () => {
                 const selectedProposal = JSON.parse(selectedProposalString)
                 form.setValue('ideaDetail', selectedProposal || '')
             }
+
+            const ideaCombinedString = sessionStorage.getItem("ideaCombined")
+            if (ideaCombinedString) {
+                const content = JSON.parse(ideaCombinedString).content
+                form.setValue('ideaDetail', content || '')
+
+                const tags = JSON.parse(ideaCombinedString).tags
+                setTags(tags || [])
+            }
         }
     }, [form, searchParams])
 

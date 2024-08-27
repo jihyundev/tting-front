@@ -89,3 +89,15 @@ export const postIdeaAdd = ({ content, tags, proposalId }: {
 export const deleteIdea = (id: string) => {
     return API.delete(`/v1/ideas/${id}`);
 }
+
+
+/**
+ * 아이디어 조합 요청
+ */
+export const postIdeas = ({ text }: {
+    text: string;
+}) => {
+    return API.post(`/v1/ideas/combine-ideas`, {
+        text
+    });
+}

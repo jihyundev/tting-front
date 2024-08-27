@@ -23,8 +23,6 @@ import { IdeaSaveCard } from "@/components/idea/idea-save-card";
 import {useEffect, useState} from "react";
 import {IdeaCreationItem} from "@/types/idea-create";
 import {LogoExclude} from "@/components/icons";
-import {useSearchParams} from "next/navigation";
-import {IdeaItem} from "@/types/idea-fetch";
 
 const FormSchema = z.object({
     baseInput: z
@@ -44,7 +42,6 @@ const FormSchema = z.object({
 })
 
 export const IdeaCreateForm = () => {
-    const searchParams = useSearchParams();
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
     });
@@ -57,20 +54,6 @@ export const IdeaCreateForm = () => {
             setIdeas(response)
         }
     }, [isSuccess, data]);
-
-    // 미리 아이디어 선택한 채로 진입하는 경우
-    useEffect(() => {
-        const isPrefill = searchParams.get('prefill') === "true"
-        if (isPrefill) {
-            // sessionStorage 에 저장된 selectedIdeas 데이터를 불러온다.
-            const selectedIdeasString = sessionStorage.getItem("selectedIdeas")
-            if (selectedIdeasString) {
-                const preSelectedIdeas = JSON.parse(selectedIdeasString) as IdeaItem[];
-                const prefilledInput = preSelectedIdeas.map(idea => idea.content).join("\n \n")
-                form.setValue('baseInput', prefilledInput || '')
-            }
-        }
-    }, [form, searchParams])
 
     const onCheckIdea = (checkedIdea: IdeaCreationItem) => {
         setIdeas(ideas.map(idea => idea.id === checkedIdea.id ? { ...idea, isChecked: true } : idea));
