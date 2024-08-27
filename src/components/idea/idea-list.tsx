@@ -59,7 +59,7 @@ export const IdeaList = () => {
     const navigateToIdeaCreate = () => {
         // 데이터 가지고 아이디어 생성 화면으로 이동
         sessionStorage.setItem("selectedIdeas", JSON.stringify(selectedIdeas));
-        router.push("/idea/create?prefill=true");
+        router.push("/idea/combine")
     }
 
     const onDeleteIdeas = () => {
