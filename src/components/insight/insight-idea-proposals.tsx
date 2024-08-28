@@ -18,7 +18,6 @@ export const InsightIdeaProposals = () => {
             <Typography variant="header5" className="mb-2.5">아이디어 제안</Typography>
             <Typography variant="caption" className="mb-5">다양한 관점의 아이디어가 필요하신가요? {name || ''}님의 아이디어를 기반으로 새로운 아이디어를 제안해드려요.</Typography>
             {isLoading && <Skeleton className="h-80" />}
-            {isError && <CommonError error={error} />}
             {data && (
                 <ul>
                     {data.data.map((item) => (
