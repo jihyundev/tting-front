@@ -77,7 +77,7 @@ export const IdeaAddCard = () => {
             proposalId: sessionStorage.getItem("selectedProposalId") || null,
         }, {
             onSuccess: () => {
-                router.back();
+                router.push('/');
             }
         });
     }
